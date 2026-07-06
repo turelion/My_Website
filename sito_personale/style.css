@@ -369,7 +369,7 @@ li {
 }
 
 /* Aggiornato: Gestisce il contenitore dei tag con Flexbox e allineamento centrale */
-.hero-tag-system { 
+.hero-tag-system {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -397,7 +397,8 @@ li {
     color: var(--text-muted);
     font-size: 0.85rem;
     letter-spacing: 0.5px;
-    margin-left: 0.2rem; /* Sicurezza per evitare che si attacchi al badge */
+    margin-left: 0.2rem;
+    /* Sicurezza per evitare che si attacchi al badge */
 }
 
 .hero-title {
@@ -513,7 +514,7 @@ li {
 }
 
 /* ==========================================================================
-   4. CHARACTER SHEET (PROFILE & SKILLS)
+   4. CHARACTER SHEET (PROFILE, HOLOGRAM SCAN & ICON INVENTORY) - COMPLETAMENTE AGGIORNATA
    ========================================================================== */
 .section-profile {
     padding: 6rem 2rem;
@@ -524,7 +525,7 @@ li {
 
 .profile-container {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1250px;
 }
 
 .section-title {
@@ -534,136 +535,315 @@ li {
     letter-spacing: -0.5px;
 }
 
-.tech-comment {
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-}
-
-.profile-grid {
+/* Layout a 3 colonne bilanciato */
+.rpg-character-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: 320px 1fr 450px;
     gap: 2.5rem;
+    align-items: start;
 }
 
-@media (max-width: 500px) {
-    .profile-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.profile-card {
+/* Struttura base delle colonne standard */
+.rpg-column {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    padding: 2rem;
+    padding: 1.5rem;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Colonna Scan completamente trasparente e senza bordi */
+.face-scan-ghost {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0;
+    min-height: auto;
 }
 
 .card-header {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 1rem;
 }
 
 .card-header h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: -0.3px;
-}
-
-.status-indicator {
-    width: 10px;
-    height: 10px;
-    background-color: var(--text-muted);
-    border-radius: 50%;
-}
-
-.status-indicator.cyan {
-    background-color: var(--primary-cyan);
-    box-shadow: 0 0 8px var(--primary-cyan);
-}
-
-.attributes-list {
     font-family: var(--font-mono);
-    margin-bottom: 1.5rem;
-}
-
-.attributes-list li {
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
-}
-
-.attr-name {
-    color: var(--text-muted);
-}
-
-.attr-value {
-    color: var(--primary-cyan);
-    font-weight: 500;
-}
-
-.profile-bio p {
-    color: var(--text-muted);
-    margin-bottom: 1.25rem;
-    font-size: 1rem;
-}
-
-.skill-slot {
-    margin-bottom: 1.75rem;
-}
-
-.skill-info {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
-}
-
-.skill-name {
     color: var(--text-main);
 }
 
-.skill-xp {
-    color: var(--text-muted);
-}
-
-.xp-bar-container {
+/* --- COLONNA 1: INTRO SYSTEM & OLOGRAMMA --- */
+.scan-header-system {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
     width: 100%;
-    height: 6px;
-    background-color: var(--bg-dark);
-    border: 1px solid var(--border-color);
-    border-radius: 3px;
+}
+
+.scan-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.scan-name-badge {
+    background: rgba(0, 229, 255, 0.06);
+    border: 1px solid var(--primary-cyan);
+    color: var(--primary-cyan);
+    padding: 0.3rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.12);
+    display: inline-block;
+}
+
+.face-scan-ghost .scan-frame {
+    position: relative;
+    width: 100%;
+    background: transparent;
+    border: none;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.xp-bar {
-    height: 100%;
-    background-color: var(--primary-cyan);
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
-    border-radius: 3px;
+.face-scan-ghost .user-3d-avatar {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    mix-blend-mode: lighten;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.2));
 }
 
-.java-slot .xp-bar {
-    background-color: var(--text-muted);
-    box-shadow: none;
+.laser-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2.5px;
+    background: linear-gradient(90deg, transparent, var(--primary-cyan), transparent);
+    box-shadow: 0 0 12px var(--primary-cyan);
+    animation: laser-scan 3.5s infinite ease-in-out;
 }
 
-.loading-pulse {
-    animation: bar-pulse 2s infinite ease-in-out;
+.scan-status-text {
+    font-size: 0.75rem;
+    color: var(--primary-cyan);
+    text-align: center;
+    margin-top: 1.5rem;
+    letter-spacing: 1px;
 }
 
-@keyframes bar-pulse {
+/* --- COLONNA 2: BIOGRAFIA E ATTRIBUTI --- */
+.attributes-list {
+    font-family: var(--font-mono);
+    margin-bottom: 1.25rem;
+}
 
-    0%,
-    100% {
-        opacity: 0.4;
+.attributes-list li {
+    margin-bottom: 0.6rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.attr-name { color: var(--text-muted); }
+.attr-value { color: var(--primary-cyan); font-weight: 500; }
+
+.profile-bio p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- COLONNA 3: TECH INVENTORY FLUIDO & RESPONSIVE --- */
+.inventory-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.5rem;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inventory-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(40px, 1fr));
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.inventory-item-slot {
+    aspect-ratio: 1 / 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+/* ICONE RIDOTTE A 1.3REM PER IL MASSIMO COMFORT VISIVO */
+.item-icon {
+    font-size: 1.3rem; 
+    color: var(--text-main);
+    opacity: 0.7;
+    transition: var(--transition-smooth);
+}
+
+.item-icon-svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    stroke: var(--text-main);
+    opacity: 0.7;
+    transition: var(--transition-smooth);
+}
+
+.inventory-item-slot:hover {
+    border-color: var(--primary-cyan);
+    background-color: rgba(0, 229, 255, 0.04);
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+}
+
+.inventory-item-slot:hover .item-icon {
+    opacity: 1;
+    color: var(--primary-cyan);
+    filter: drop-shadow(0 0 5px var(--primary-cyan));
+}
+
+.inventory-item-slot:hover .item-icon-svg {
+    opacity: 1;
+    stroke: var(--primary-cyan);
+    filter: drop-shadow(0 0 5px var(--primary-cyan));
+}
+
+/* Tooltip standard */
+.inventory-item-slot::after {
+    content: attr(data-item);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: var(--bg-dark);
+    border: 1px solid var(--primary-cyan);
+    color: #fff;
+    padding: 0.3rem 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    white-space: nowrap;
+    border-radius: 2px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.inventory-item-slot:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.core-item { border-color: rgba(0, 229, 255, 0.35); }
+.core-item .item-icon { opacity: 0.85; }
+
+/* Slot Speciale AI */
+.ai-item { border-color: rgba(189, 147, 249, 0.5); }
+.ai-item .item-icon { color: #bd93f9; opacity: 0.8; }
+.ai-item:hover { border-color: #bd93f9; box-shadow: 0 0 12px rgba(189, 147, 249, 0.3); }
+.ai-item:hover .item-icon { color: #bd93f9; filter: drop-shadow(0 0 5px #bd93f9); }
+.ai-item::after { border-color: #bd93f9; }
+
+.locked-slot { border-style: dashed; opacity: 0.25; }
+.item-tag { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
+
+/* CONTENITORE ZAINO STRUTTURATO */
+.backpack-custom-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    flex-shrink: 0;
+    gap: 0.5rem;
+}
+
+.backpack-custom-img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.2));
+    transition: var(--transition-smooth);
+}
+
+.backpack-custom-container:hover .backpack-custom-img {
+    filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5));
+    transform: scale(1.04);
+}
+
+.backpack-label {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+/* --- ANIMAZIONI & RESPONSIVE BREAKPOINTS --- */
+@keyframes laser-scan {
+    0%, 100% { top: 0%; }
+    50% { top: 100%; }
+}
+
+@media (max-width: 1100px) {
+    .rpg-character-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
+    .face-scan-ghost .user-3d-avatar {
+        max-width: 260px;
+    }
+}
 
-    50% {
-        opacity: 1;
+@media (max-width: 480px) {
+    .inventory-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .inventory-grid {
+        width: 100%;
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .backpack-custom-container {
+        width: 140px;
     }
 }
 

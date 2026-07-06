@@ -13,6 +13,9 @@
         href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
         rel="stylesheet">
 
+    <!-- Devicon CDN per le icone dei linguaggi di programmazione -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
     <!-- Collegamento al CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -124,15 +127,32 @@
             </div>
         </section>
 
-        <!-- 2. CHARACTER SHEET (Chi sono & Skill RPG) -->
+        <!-- 2. CHARACTER SHEET (Evoluzione Ologramma & Icon Grid) -->
         <section id="profile" class="section-profile">
             <div class="profile-container">
 
                 <h2 class="section-title"><span class="tech-comment">//</span> Character Sheet</h2>
 
-                <div class="profile-grid">
-                    <!-- Colonna Sinistra: Statistiche Personaggio / Bio -->
-                    <div class="profile-card stats-card">
+                <div class="rpg-character-layout">
+
+                    <!-- COLONNA 1: BIOMETRIC SCAN (Ora Ologramma Trasparente ed Enorme) -->
+                    <div class="rpg-column face-scan-ghost">
+
+                        <!-- NUOVO BADGE IDENTIFICATIVO IN STILE VIDEO GIOCO -->
+                        <div class="scan-header-system font-mono">
+                            <span class="scan-label">BIOMETRIC SCAN ID:</span>
+                            <span class="scan-name-badge">SALVATORE LEONE</span>
+                        </div>
+
+                        <div class="scan-frame">
+                            <img src="media/My3dScan.png" alt="Salvatore Leone 3D Scan" class="user-3d-avatar">
+                            <div class="laser-line"></div>
+                        </div>
+                        <div class="scan-status-text font-mono">[SCANNING_PERSONALITY... SUCCESS]</div>
+                    </div>
+
+                    <!-- COLONNA 2: ATTRIBUTES & TRAITS -->
+                    <div class="rpg-column attributes-card">
                         <div class="card-header">
                             <span class="status-indicator"></span>
                             <h3>Attributes & Traits</h3>
@@ -154,80 +174,101 @@
                                 </p>
                                 <p>
                                     Credo che l'Intelligenza Artificiale non vada subita ma governata. La integro
-                                    attivamente per automatizzare flussi complessi (come la moderazione e
-                                    classificazione di contenuti tramite computer vision), ottimizzando i database e la
-                                    logica core che fa muovere l'applicazione.
+                                    attivamente per automatizzare flussi complessi, ottimizzando i database e la logica
+                                    core che fa muovere l'applicazione.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Colonna Destra: Skills & XP Bars -->
-                    <div class="profile-card skills-card">
+                    <!-- COLONNA 3: TECH INVENTORY (Icone Ufficiali + Immagine Zaino Custom) -->
+                    <div class="rpg-column inventory-card">
                         <div class="card-header">
                             <span class="status-indicator cyan"></span>
-                            <h3>Skill Tree & Experience Points</h3>
+                            <h3>Core Equipment (Inventory)</h3>
                         </div>
-                        <div class="card-body">
 
-                            <!-- Skill 1: Laravel -->
-                            <div class="skill-slot">
-                                <div class="skill-info">
-                                    <span class="skill-name">PHP / Laravel</span>
-                                    <span class="skill-xp">Lvl 80</span>
+                        <div class="inventory-wrapper">
+                            <div class="inventory-grid">
+                                <!-- RIGA 1 -->
+                                <div class="inventory-item-slot" data-item="HTML5"><i
+                                        class="devicon-html5-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="CSS3"><i
+                                        class="devicon-css3-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="Bootstrap"><i
+                                        class="devicon-bootstrap-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="JavaScript"><i
+                                        class="devicon-javascript-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="Node.js"><i
+                                        class="devicon-nodejs-plain item-icon"></i></div>
+
+                                <!-- RIGA 2 -->
+                                <div class="inventory-item-slot core-item" data-item="PHP"><i
+                                        class="devicon-php-plain item-icon"></i></div>
+                                <div class="inventory-item-slot core-item" data-item="Laravel"><i
+                                        class="devicon-laravel-original item-icon"></i></div>
+
+                                <!-- ICONA FORTIFY: Castello/Fortezza in SVG -->
+                                <div class="inventory-item-slot" data-item="Laravel Fortify">
+                                    <svg class="item-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 22V10l2-2V4h2v4l2-2h4l2 2v4h2V8l2 2v12H4z" />
+                                        <path d="M10 22v-5a2 2 0 0 1 4 0v5" />
+                                    </svg>
                                 </div>
-                                <div class="xp-bar-container">
-                                    <div class="xp-bar" style="width: 80%"></div>
+
+                                <div class="inventory-item-slot" data-item="Livewire"><i
+                                        class="devicon-livewire-plain item-icon"></i></div>
+                                <div class="inventory-item-slot core-item" data-item="SQL Database"><i
+                                        class="devicon-azuresqldatabase-plain item-icon"></i></div>
+
+                                <!-- RIGA 3 -->
+                                <div class="inventory-item-slot" data-item="Python"><i
+                                        class="devicon-python-plain item-icon"></i></div>
+
+                                <!-- ICONA POWERBI: Grafico a Colonne Verticali in SVG -->
+                                <div class="inventory-item-slot" data-item="PowerBI">
+                                    <svg class="item-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                                        <line x1="3" y1="20" x2="21" y2="20"></line>
+                                    </svg>
                                 </div>
+
+                                <div class="inventory-item-slot" data-item="Excel"><i
+                                        class="devicon-windows8-original item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="Scrum (Agile)"><i
+                                        class="devicon-trello-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="Git"><i
+                                        class="devicon-git-plain item-icon"></i></div>
+
+                                <!-- RIGA 4 -->
+                                <div class="inventory-item-slot" data-item="GitHub"><i
+                                        class="devicon-github-original item-icon"></i></div>
+                                <div class="inventory-item-slot ai-item" data-item="Google Vision API"><i
+                                        class="devicon-google-plain item-icon"></i></div>
+
+                                <!-- 3 Slot vuoti di espansione -->
+                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span
+                                        class="item-tag">[+]</span></div>
+                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span
+                                        class="item-tag">[+]</span></div>
+                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span
+                                        class="item-tag">[+]</span></div>
                             </div>
 
-                            <!-- Skill 2: SQL -->
-                            <div class="skill-slot">
-                                <div class="skill-info">
-                                    <span class="skill-name">SQL (Database Modeling)</span>
-                                    <span class="skill-xp">Lvl 75</span>
-                                </div>
-                                <div class="xp-bar-container">
-                                    <div class="xp-bar" style="width: 75%"></div>
-                                </div>
+                            <!-- Area Zaino Custom Ingrandito -->
+                            <div class="backpack-custom-container">
+                                <img src="media/Bag.png" alt="Equipment Backpack" class="backpack-custom-img">
+                                <span class="backpack-label font-mono">EQUIP_BAG</span>
                             </div>
-
-                            <!-- Skill 3: Frontend Synergy -->
-                            <div class="skill-slot">
-                                <div class="skill-info">
-                                    <span class="skill-name">JS / Livewire / UI</span>
-                                    <span class="skill-xp">Lvl 70</span>
-                                </div>
-                                <div class="xp-bar-container">
-                                    <div class="xp-bar" style="width: 70%"></div>
-                                </div>
-                            </div>
-
-                            <!-- Skill 4: Business Data -->
-                            <div class="skill-slot">
-                                <div class="skill-info">
-                                    <span class="skill-name">PowerBI / Data Analysis</span>
-                                    <span class="skill-xp">Lvl 65</span>
-                                </div>
-                                <div class="xp-bar-container">
-                                    <div class="xp-bar" style="width: 65%"></div>
-                                </div>
-                            </div>
-
-                            <!-- Skill 5: Java (Next Quest) -->
-                            <div class="skill-slot java-slot">
-                                <div class="skill-info">
-                                    <span class="skill-name">Java / OOP (Current Quest)</span>
-                                    <span class="skill-xp">In Progress...</span>
-                                </div>
-                                <div class="xp-bar-container">
-                                    <div class="xp-bar loading-pulse" style="width: 25%"></div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
-                </div> <!-- /profile-grid -->
+
+                </div>
+            </div>
 
             </div>
         </section>
