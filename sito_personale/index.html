@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvatore Leone | Backend-Focused Full Stack Developer</title>
+
+    <!-- Google Fonts: Importiamo un font geometrico e moderno per i titoli e uno monospazio per le skill/terminale -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Collegamento al CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Navbar Minimal & Balanced -->
+    <header class="main-header">
+        <div class="header-left">
+            <div class="logo">SL<span class="terminal-cursor">_</span></div>
+        </div>
+
+        <div class="rpg-hud-horizontal">
+            <div class="hud-profile-block">
+                <svg class="tech-avatar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="3" stroke="#BD93F9" stroke-width="2" />
+                    <circle cx="12" cy="4" r="2" stroke="#00E5FF" stroke-width="1.5" />
+                    <circle cx="5" cy="16" r="2" stroke="#00E5FF" stroke-width="1.5" />
+                    <circle cx="19" cy="16" r="2" stroke="#00E5FF" stroke-width="1.5" />
+                    <path d="M12 6V9M7 15L10 13M17 15L14 13" stroke="#4A5568" stroke-width="1.5"
+                        stroke-linecap="round" />
+                </svg>
+                <div class="hud-level-badge">LVL <span id="rpg-level">34</span></div>
+            </div>
+
+            <div class="hud-item">
+                <span class="hud-label red-text">HP</span>
+                <div class="bar-track">
+                    <div class="bar-fill hp-bar" style="width: 100%"></div>
+                </div>
+            </div>
+
+            <div class="hud-item">
+                <span class="hud-label purple-text">SP</span>
+                <div class="bar-track">
+                    <div class="bar-fill sp-bar" style="width: 85%"></div>
+                </div>
+            </div>
+
+            <div class="hud-item">
+                <span class="hud-label cyan-text">XP</span>
+                <div class="bar-track">
+                    <div id="rpg-xp-bar" class="bar-fill xp-bar" style="width: 15%"></div>
+                </div>
+                <span class="hud-value"><span id="rpg-xp-percent">15</span>%</span>
+            </div>
+        </div>
+
+        <button class="menu-trigger" aria-label="Toggle Menu">
+            <span class="menu-text">MENU</span>
+            <div class="hamburger-lines">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </button>
+    </header>
+
+    <div class="game-overlay-menu">
+        <div class="overlay-content">
+            <div class="overlay-meta">// SYSTEM_PAUSE_MODE</div>
+
+            <div class="mobile-hud-display"></div>
+
+            <nav class="overlay-nav">
+                <a href="#hero" class="overlay-link"><span class="link-number">01.</span> START_GAME (Home)</a>
+                <a href="#profile" class="overlay-link"><span class="link-number">02.</span> CHARACTER_SHEET</a>
+                <a href="#terminal" class="overlay-link"><span class="link-number">03.</span> CORE_ENGINE (Terminal)</a>
+                <a href="#contact" class="overlay-link"><span class="link-number">04.</span> START_QUEST (Contact)</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Contenitore Principale -->
+    <main>
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="section-hero">
+            <div class="hero-container">
+
+                <div class="hero-tag-system">
+                    <span>PLAYER_ONE</span><span class="player-badge">SALVATORE LEONE</span>
+                    <span class="tech-comment">// CLASS: FULL_STACK </span>
+                </div>
+
+                <div class="tech-comment">// status: active_development</div>
+
+                <h1 class="hero-title">
+                    Sviluppo la <span class="highlight">logica</span> <br>che muove le idee.
+                </h1>
+
+                <p class="hero-subtitle">
+                    Sono un <strong>Full Stack Developer</strong> con un'evoluzione verticale verso il
+                    <strong>Backend</strong>. Progetto architetture pulite, ottimizzo processi e governo l'Intelligenza
+                    Artificiale per creare soluzioni software scalabili e data-driven.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">Inizia la Quest</a>
+                    <a href="#profile" class="btn btn-secondary">Esplora Character Sheet</a>
+                </div>
+            </div>
+
+            <!-- Un indicatore discreto per invitare a scrollare verso il basso -->
+            <div class="scroll-indicator">
+                <span class="mouse">
+                    <span class="wheel"></span>
+                </span>
+                <span class="arrow"></span>
+            </div>
+        </section>
+
+        <!-- 2. CHARACTER SHEET (Chi sono & Skill RPG) -->
+        <section id="profile" class="section-profile">
+            <div class="profile-container">
+
+                <h2 class="section-title"><span class="tech-comment">//</span> Character Sheet</h2>
+
+                <div class="profile-grid">
+                    <!-- Colonna Sinistra: Statistiche Personaggio / Bio -->
+                    <div class="profile-card stats-card">
+                        <div class="card-header">
+                            <span class="status-indicator"></span>
+                            <h3>Attributes & Traits</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="attributes-list">
+                                <li><span class="attr-name">ROLE:</span> <span class="attr-value">Backend-Focused Full
+                                        Stack</span></li>
+                                <li><span class="attr-name">CLASS:</span> <span class="attr-value">Problem Solver /
+                                        Process Architect</span></li>
+                                <li><span class="attr-name">MINDSET:</span> <span class="attr-value">Data-Driven &
+                                        AI-Augmented</span></li>
+                            </ul>
+                            <div class="profile-bio">
+                                <p>
+                                    Il mio percorso nasce dalla progettazione strutturata. Spinto dalla passione per
+                                    l'analisi dei dati e la complessità, ho trovato nella programmazione il mio habitat
+                                    naturale per ingegnerizzare soluzioni reali.
+                                </p>
+                                <p>
+                                    Credo che l'Intelligenza Artificiale non vada subita ma governata. La integro
+                                    attivamente per automatizzare flussi complessi (come la moderazione e
+                                    classificazione di contenuti tramite computer vision), ottimizzando i database e la
+                                    logica core che fa muovere l'applicazione.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colonna Destra: Skills & XP Bars -->
+                    <div class="profile-card skills-card">
+                        <div class="card-header">
+                            <span class="status-indicator cyan"></span>
+                            <h3>Skill Tree & Experience Points</h3>
+                        </div>
+                        <div class="card-body">
+
+                            <!-- Skill 1: Laravel -->
+                            <div class="skill-slot">
+                                <div class="skill-info">
+                                    <span class="skill-name">PHP / Laravel</span>
+                                    <span class="skill-xp">Lvl 80</span>
+                                </div>
+                                <div class="xp-bar-container">
+                                    <div class="xp-bar" style="width: 80%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 2: SQL -->
+                            <div class="skill-slot">
+                                <div class="skill-info">
+                                    <span class="skill-name">SQL (Database Modeling)</span>
+                                    <span class="skill-xp">Lvl 75</span>
+                                </div>
+                                <div class="xp-bar-container">
+                                    <div class="xp-bar" style="width: 75%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 3: Frontend Synergy -->
+                            <div class="skill-slot">
+                                <div class="skill-info">
+                                    <span class="skill-name">JS / Livewire / UI</span>
+                                    <span class="skill-xp">Lvl 70</span>
+                                </div>
+                                <div class="xp-bar-container">
+                                    <div class="xp-bar" style="width: 70%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 4: Business Data -->
+                            <div class="skill-slot">
+                                <div class="skill-info">
+                                    <span class="skill-name">PowerBI / Data Analysis</span>
+                                    <span class="skill-xp">Lvl 65</span>
+                                </div>
+                                <div class="xp-bar-container">
+                                    <div class="xp-bar" style="width: 65%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill 5: Java (Next Quest) -->
+                            <div class="skill-slot java-slot">
+                                <div class="skill-info">
+                                    <span class="skill-name">Java / OOP (Current Quest)</span>
+                                    <span class="skill-xp">In Progress...</span>
+                                </div>
+                                <div class="xp-bar-container">
+                                    <div class="xp-bar loading-pulse" style="width: 25%"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- /profile-grid -->
+
+            </div>
+        </section>
+
+        <!-- 3. LIVE TERMINAL -->
+        <section id="terminal" class="section-terminal">
+            <div class="terminal-container">
+
+                <h2 class="section-title"><span class="tech-comment">//</span> Core Engine</h2>
+
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="btn-dot red"></span>
+                            <span class="btn-dot yellow"></span>
+                            <span class="btn-dot green"></span>
+                        </div>
+                        <div class="terminal-title">salvatoreleone@backend-core: ~</div>
+                    </div>
+
+                    <div class="terminal-body">
+                        <div class="terminal-output">
+                            <p class="output-line system-msg">System initialization completed. All modules online.</p>
+                            <p class="output-line system-msg">Type <span class="cyan-text">help</span> to view available
+                                system routines.</p>
+                            <br>
+                            <div id="log-display">
+                                <p class="output-line"><span class="prompt-text">salvatoreleone@core:~$</span> cat
+                                    vision_ai_integration.sh</p>
+                                <p class="output-line muted-text">> Integrating Google Vision API into Laravel
+                                    environment...</p>
+                                <p class="output-line muted-text">> Content moderation module: ACTIVE (Checking user
+                                    uploads, blurring faces, generating context payload).</p>
+                                <p class="output-line success-text">> Status: Optimization achieved. AI governed
+                                    successfully.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-input-line">
+                            <span class="prompt-text">salvatoreleone@core:~$</span>
+                            <input type="text" id="terminal-input" autocomplete="off"
+                                placeholder="type 'help' or explore buttons below..." autofocus>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-shortcuts">
+                    <button class="shortcut-btn" data-cmd="about">cat about_me.md</button>
+                    <button class="shortcut-btn" data-cmd="ai">cat ai_vision.log</button>
+                    <button class="shortcut-btn" data-cmd="startup">cat startup_experience.env</button>
+                    <button class="shortcut-btn" data-cmd="clear">clear</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. QUEST LOG (Contatti Netlify) -->
+        <section id="contact" class="section-contact">
+            <div class="contact-container">
+
+                <h2 class="section-title"><span class="tech-comment">//</span> Start a New Quest</h2>
+
+                <div class="contact-box">
+                    <p class="contact-subtitle">
+                        Sei un recruiter o un'azienda alla ricerca di un developer orientato ai processi e al backend?
+                        Invia una richiesta di contatto per avviare la sessione.
+                    </p>
+
+                    <form name="recruiter-contact" method="POST" data-netlify="true" class="quest-form">
+
+                        <input type="hidden" name="form-name" value="recruiter-contact" />
+
+                        <div class="form-group">
+                            <label for="company">Company / Name</label>
+                            <input type="text" id="company" name="company" required
+                                placeholder="Es. Azienda Tech S.r.l. o Nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Corporate Email</label>
+                            <input type="email" id="email" name="email" required placeholder="name@company.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Quest Objectives (Message)</label>
+                            <textarea id="message" name="message" rows="5" required
+                                placeholder="Descrivi brevemente l'opportunità da remoto o il progetto..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit">Deploy Message 🚀</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2026 Salvatore Leone. All rights reserved. Powered by Netlify.</p>
+    </footer>
+
+    <!-- Collegamento al JavaScript (defer lo carica alla fine per non bloccare la pagina) -->
+    <script src="script.js" defer></script>
+</body>
+
+</html>
