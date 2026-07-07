@@ -52,6 +52,7 @@ li {
     list-style: none;
 }
 
+
 /* ==========================================================================
    2. HEADER, HORIZONTAL HUD & GAME OVERLAY MENU
    ========================================================================== */
@@ -514,7 +515,7 @@ li {
 }
 
 /* ==========================================================================
-   4. CHARACTER SHEET (PROFILE, HOLOGRAM SCAN & ICON INVENTORY) - COMPLETAMENTE AGGIORNATA
+   4. CHARACTER SHEET (PROFILE, HOLOGRAM SCAN & ICON INVENTORY) - STRUTTURA A COLONNE (GRID)
    ========================================================================== */
 .section-profile {
     padding: 6rem 2rem;
@@ -533,9 +534,10 @@ li {
     font-weight: 800;
     margin-bottom: 3rem;
     letter-spacing: -0.5px;
+    text-align: center;
 }
 
-/* Layout a 3 colonne bilanciato */
+/* Layout macro a 3 colonne generale della pagina */
 .rpg-character-layout {
     display: grid;
     grid-template-columns: 320px 1fr 450px;
@@ -585,7 +587,7 @@ li {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     text-align: center;
     width: 100%;
 }
@@ -594,6 +596,7 @@ li {
     font-size: 0.75rem;
     color: var(--text-muted);
     letter-spacing: 1px;
+    margin-top: 2rem;
 }
 
 .scan-name-badge {
@@ -645,8 +648,9 @@ li {
     font-size: 0.75rem;
     color: var(--primary-cyan);
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
     letter-spacing: 1px;
+    margin-left: 1.4rem;
 }
 
 /* --- COLONNA 2: BIOGRAFIA E ATTRIBUTI --- */
@@ -671,7 +675,7 @@ li {
     line-height: 1.6;
 }
 
-/* --- COLONNA 3: TECH INVENTORY FLUIDO & RESPONSIVE --- */
+/* --- COLONNA 3: CONFIGURAZIONE INVENTARIO (STRUTTURA GRID AGGIORNATA) --- */
 .inventory-card {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
@@ -682,25 +686,30 @@ li {
     flex-direction: column;
 }
 
+/* Usiamo le percentuali ma con allineamento interno per avvicinarli */
 .inventory-wrapper {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dividiamo la card esattamente in due metà pulite */
     gap: 1.5rem;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     flex-grow: 1;
 }
 
+/* LA GRIGLIA DESKTOP: La spingiamo verso destra per incollarla allo zaino */
 .inventory-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(40px, 1fr));
+    grid-template-columns: repeat(4, 54px);
     gap: 0.5rem;
-    flex: 1;
+    justify-self: end;
+    width: max-content;
 }
 
+/* Lo slot rimane un quadrato perfetto e non fluttua fuori */
 .inventory-item-slot {
-    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 54px;
+    aspect-ratio: 1 / 1; 
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -712,17 +721,17 @@ li {
     transition: var(--transition-smooth);
 }
 
-/* ICONE RIDOTTE A 1.3REM PER IL MASSIMO COMFORT VISIVO */
+/* Icone Desktop dentro i 52px */
 .item-icon {
-    font-size: 1.3rem; 
+    font-size: 1.45em; 
     color: var(--text-main);
     opacity: 0.7;
     transition: var(--transition-smooth);
 }
 
 .item-icon-svg {
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 1.45rem;
+    height: 1.45rem;
     stroke: var(--text-main);
     opacity: 0.7;
     transition: var(--transition-smooth);
@@ -746,7 +755,7 @@ li {
     filter: drop-shadow(0 0 5px var(--primary-cyan));
 }
 
-/* Tooltip standard */
+/* Tooltip */
 .inventory-item-slot::after {
     content: attr(data-item);
     position: absolute;
@@ -786,22 +795,26 @@ li {
 .locked-slot { border-style: dashed; opacity: 0.25; }
 .item-tag { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
 
-/* CONTENITORE ZAINO STRUTTURATO */
+/* CONTENITORE ZAINO DESKTOP (Ancorato nella sua colonna) */
 .backpack-custom-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 150px;
-    flex-shrink: 0;
-    gap: 0.5rem;
+    justify-self: start;
+    width: 100%;
+    max-width: 160px; 
+    gap: 0.6rem;
+    text-align: center;
 }
 
 .backpack-custom-img {
     width: 100%;
     height: auto;
-    max-height: 150px;
+    max-height: 200px;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
     filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.2));
     transition: var(--transition-smooth);
 }
@@ -817,33 +830,122 @@ li {
     letter-spacing: 0.5px;
 }
 
-/* --- ANIMAZIONI & RESPONSIVE BREAKPOINTS --- */
+/* --- ANIMAZIONI GENERALI --- */
 @keyframes laser-scan {
     0%, 100% { top: 0%; }
     50% { top: 100%; }
 }
 
-@media (max-width: 1100px) {
+
+/* ==========================================================================
+   DINAMISMO TABLET (Fluido con le Frazioni di Grid - No Blocchi Fissi)
+   ========================================================================== */
+@media (min-width: 481px) and (max-width: 1100px) {
     .rpg-character-layout {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    .face-scan-ghost .user-3d-avatar {
-        max-width: 260px;
+
+    /* Usiamo le frazioni (fr): la griglia occupa il 60% dello spazio disponibile, lo zaino il 40% */
+    .inventory-wrapper {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr; 
+        gap: 2rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* La griglia si adatta fluidamente alla colonna senza forzature */
+    .inventory-grid {
+        grid-template-columns: repeat(5, 1fr);
+        width: 100%;
+        max-width: 100%;
+        justify-self: auto;
+        gap: 0.5rem;
+    }
+
+    /* FORZIAMO lo slot a resettare l'altezza fissa desktop e a tornare fluido */
+    .inventory-item-slot {
+        width: 100%;
+        height: auto; /* Annulla i 54px del desktop */
+        aspect-ratio: 1 / 1; /* Il quadrato si calcola da solo in base alla larghezza della colonna */
+    }
+
+    /* Le icone si ridimensionano proporzionalmente */
+    .item-icon {
+        font-size: 2rem; 
+    }
+    .item-icon-svg {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    /* Lo zaino occupa il 100% della sua colonna (che è il 40% del totale), centrandosi da solo */
+    .backpack-custom-container {
+        width: 100%;
+        max-width: 220px; /* Unico limite per non farlo diventare gigante su tablet grandi */
+        margin: 0 auto;   /* Centratura automatica pulita */
+        text-align: center;
+    }
+
+    .backpack-custom-img {
+        width: 100%;
+        height: auto;
+        max-height: 240px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
     }
 }
 
+
+/* ==========================================================================
+   DINAMISMO MOBILE (Incolonnamento Perfetto Sotto i 480px)
+   ========================================================================== */
 @media (max-width: 480px) {
+    .rpg-character-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Forza l'incolonnamento verticale: prima la griglia, sotto lo zaino */
     .inventory-wrapper {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr; 
         gap: 2rem;
+        justify-items: center;
     }
+    
+    /* La griglia prende tutto il lato orizzontale disponibile dello smartphone */
     .inventory-grid {
-        width: 100%;
         grid-template-columns: repeat(5, 1fr);
+        width: 100%;
+        gap: 0.4rem;
     }
+
+    .item-icon {
+        font-size: 1.60rem; 
+    }
+    .item-icon-svg {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    /* Lo zaino su mobile si rimpicciolisce e sta al centro sotto le icone */
     .backpack-custom-container {
-        width: 140px;
+        width: 100%;
+        max-width: 130px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .backpack-custom-img {
+        width: 100%;
+        height: auto;
+        max-height: 160px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
     }
 }
 
