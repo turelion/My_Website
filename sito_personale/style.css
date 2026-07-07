@@ -607,7 +607,6 @@ li {
     /* Lo tiene sopra come prima, ma senza ingombro eccessivo */
     font-weight: bold;
     opacity: 0.9;
-    margin-bottom: -0.5rem;
 }
 
 /* --- COLONNA 1: INTRO SYSTEM & OLOGRAMMA --- */
@@ -1301,7 +1300,7 @@ li {
     letter-spacing: 1px;
     font-weight: bold;
     display: block;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
 }
 
 .quest-briefing p {
