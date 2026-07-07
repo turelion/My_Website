@@ -111,6 +111,11 @@ li {
     filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.3));
 }
 
+.tech-comment {
+    color: var(--text-muted);
+}
+
+
 /* Badge Livello con scansione laser */
 .hud-level-badge {
     font-weight: 800;
@@ -537,6 +542,12 @@ li {
     text-align: center;
 }
 
+.cyan-highlight {
+    color: var(--primary-cyan) !important;
+    /* Forza il colore ciano della tua palette */
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
 /* Layout macro a 3 colonne generale della pagina */
 .rpg-character-layout {
     display: grid;
@@ -567,6 +578,7 @@ li {
 .card-header {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
@@ -579,6 +591,23 @@ li {
     letter-spacing: -0.3px;
     font-family: var(--font-mono);
     color: var(--text-main);
+}
+
+/* Stile futuristico per i tag di intestazione del paragrafo */
+.card-log-tag {
+    font-family: var(--font-mono);
+    /* Forza l'uso del font da codice */
+    font-size: 0.75rem;
+    /* Testo molto piccolo, stile stringa di sistema */
+    color: var(--primary-cyan);
+    /* Riprende il colore ciano per creare contrasto */
+    letter-spacing: 1px;
+    /* Spazia le lettere in stile interfaccia militare */
+    display: block;
+    /* Lo tiene sopra come prima, ma senza ingombro eccessivo */
+    font-weight: bold;
+    opacity: 0.9;
+    margin-bottom: -0.5rem;
 }
 
 /* --- COLONNA 1: INTRO SYSTEM & OLOGRAMMA --- */
@@ -656,7 +685,7 @@ li {
 /* --- COLONNA 2: BIOGRAFIA E ATTRIBUTI --- */
 .attributes-list {
     font-family: var(--font-mono);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.6rem;
 }
 
 .attributes-list li {
@@ -665,14 +694,25 @@ li {
     line-height: 1.4;
 }
 
-.attr-name { color: var(--text-muted); }
-.attr-value { color: var(--primary-cyan); font-weight: 500; }
+.attr-name {
+    color: var(--text-muted);
+}
+
+.attr-value {
+    color: var(--primary-cyan);
+    font-weight: 500;
+}
 
 .profile-bio p {
     color: var(--text-muted);
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    margin-bottom: 1.4rem;
+    font-size: 0.85rem;
+    line-height: 1.35;
+}
+
+.profile-bio p:last-child {
+    margin-bottom: 0;
+    /* Elimina il margine finale per non spingere il bordo della card */
 }
 
 /* --- COLONNA 3: CONFIGURAZIONE INVENTARIO (STRUTTURA GRID AGGIORNATA) --- */
@@ -689,7 +729,8 @@ li {
 /* Usiamo le percentuali ma con allineamento interno per avvicinarli */
 .inventory-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dividiamo la card esattamente in due metà pulite */
+    grid-template-columns: 1fr 1fr;
+    /* Dividiamo la card esattamente in due metà pulite */
     gap: 1.5rem;
     align-items: center;
     width: 100%;
@@ -709,7 +750,7 @@ li {
 .inventory-item-slot {
     width: 100%;
     height: 54px;
-    aspect-ratio: 1 / 1; 
+    aspect-ratio: 1 / 1;
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -723,7 +764,7 @@ li {
 
 /* Icone Desktop dentro i 52px */
 .item-icon {
-    font-size: 1.45em; 
+    font-size: 1.45em;
     color: var(--text-main);
     opacity: 0.7;
     transition: var(--transition-smooth);
@@ -774,7 +815,7 @@ li {
     pointer-events: none;
     transition: opacity 0.2s, transform 0.2s;
     z-index: 10;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .inventory-item-slot:hover::after {
@@ -782,18 +823,48 @@ li {
     transform: translateX(-50%) translateY(0);
 }
 
-.core-item { border-color: rgba(0, 229, 255, 0.35); }
-.core-item .item-icon { opacity: 0.85; }
+.core-item {
+    border-color: rgba(0, 229, 255, 0.35);
+}
+
+.core-item .item-icon {
+    opacity: 0.85;
+}
 
 /* Slot Speciale AI */
-.ai-item { border-color: rgba(189, 147, 249, 0.5); }
-.ai-item .item-icon { color: #bd93f9; opacity: 0.8; }
-.ai-item:hover { border-color: #bd93f9; box-shadow: 0 0 12px rgba(189, 147, 249, 0.3); }
-.ai-item:hover .item-icon { color: #bd93f9; filter: drop-shadow(0 0 5px #bd93f9); }
-.ai-item::after { border-color: #bd93f9; }
+.ai-item {
+    border-color: rgba(189, 147, 249, 0.5);
+}
 
-.locked-slot { border-style: dashed; opacity: 0.25; }
-.item-tag { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
+.ai-item .item-icon {
+    color: #bd93f9;
+    opacity: 0.8;
+}
+
+.ai-item:hover {
+    border-color: #bd93f9;
+    box-shadow: 0 0 12px rgba(189, 147, 249, 0.3);
+}
+
+.ai-item:hover .item-icon {
+    color: #bd93f9;
+    filter: drop-shadow(0 0 5px #bd93f9);
+}
+
+.ai-item::after {
+    border-color: #bd93f9;
+}
+
+.locked-slot {
+    border-style: dashed;
+    opacity: 0.25;
+}
+
+.item-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
 
 /* CONTENITORE ZAINO DESKTOP (Ancorato nella sua colonna) */
 .backpack-custom-container {
@@ -803,7 +874,7 @@ li {
     justify-content: center;
     justify-self: start;
     width: 100%;
-    max-width: 160px; 
+    max-width: 160px;
     gap: 0.6rem;
     text-align: center;
 }
@@ -830,17 +901,29 @@ li {
     letter-spacing: 0.5px;
 }
 
+.text-cyan {
+    color: #00E5FF
+}
+
+
 /* --- ANIMAZIONI GENERALI --- */
 @keyframes laser-scan {
-    0%, 100% { top: 0%; }
-    50% { top: 100%; }
+
+    0%,
+    100% {
+        top: 0%;
+    }
+
+    50% {
+        top: 100%;
+    }
 }
 
 
 /* ==========================================================================
    DINAMISMO TABLET (Fluido con le Frazioni di Grid - No Blocchi Fissi)
    ========================================================================== */
-@media (min-width: 481px) and (max-width: 1100px) {
+@media (min-width: 481px) and (max-width: 1320px) {
     .rpg-character-layout {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -849,7 +932,7 @@ li {
     /* Usiamo le frazioni (fr): la griglia occupa il 60% dello spazio disponibile, lo zaino il 40% */
     .inventory-wrapper {
         display: grid;
-        grid-template-columns: 1.5fr 1fr; 
+        grid-template-columns: 1.5fr 1fr;
         gap: 2rem;
         align-items: center;
         width: 100%;
@@ -867,14 +950,17 @@ li {
     /* FORZIAMO lo slot a resettare l'altezza fissa desktop e a tornare fluido */
     .inventory-item-slot {
         width: 100%;
-        height: auto; /* Annulla i 54px del desktop */
-        aspect-ratio: 1 / 1; /* Il quadrato si calcola da solo in base alla larghezza della colonna */
+        height: auto;
+        /* Annulla i 54px del desktop */
+        aspect-ratio: 1 / 1;
+        /* Il quadrato si calcola da solo in base alla larghezza della colonna */
     }
 
     /* Le icone si ridimensionano proporzionalmente */
     .item-icon {
-        font-size: 2rem; 
+        font-size: 2rem;
     }
+
     .item-icon-svg {
         width: 2rem;
         height: 2rem;
@@ -883,8 +969,10 @@ li {
     /* Lo zaino occupa il 100% della sua colonna (che è il 40% del totale), centrandosi da solo */
     .backpack-custom-container {
         width: 100%;
-        max-width: 220px; /* Unico limite per non farlo diventare gigante su tablet grandi */
-        margin: 0 auto;   /* Centratura automatica pulita */
+        max-width: 220px;
+        /* Unico limite per non farlo diventare gigante su tablet grandi */
+        margin: 0 auto;
+        /* Centratura automatica pulita */
         text-align: center;
     }
 
@@ -911,11 +999,11 @@ li {
     /* Forza l'incolonnamento verticale: prima la griglia, sotto lo zaino */
     .inventory-wrapper {
         display: grid;
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
         gap: 2rem;
         justify-items: center;
     }
-    
+
     /* La griglia prende tutto il lato orizzontale disponibile dello smartphone */
     .inventory-grid {
         grid-template-columns: repeat(5, 1fr);
@@ -924,8 +1012,9 @@ li {
     }
 
     .item-icon {
-        font-size: 1.60rem; 
+        font-size: 1.60rem;
     }
+
     .item-icon-svg {
         width: 1.6rem;
         height: 1.6rem;
@@ -982,11 +1071,16 @@ li {
     border-bottom: 1px solid var(--border-color);
 }
 
+/* I PALLINI MAC IN ALTO */
 .terminal-buttons {
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important;
+    /* Forza i pallini in linea orizzontale */
     gap: 0.5rem;
     position: absolute;
     left: 1rem;
+    width: auto !important;
+    /* Impedisce che si allarghino su mobile */
 }
 
 .btn-dot {
@@ -994,6 +1088,8 @@ li {
     height: 12px;
     border-radius: 50%;
     display: inline-block;
+    flex-shrink: 0;
+    /* Impedisce ai pallini di schiacciarsi */
 }
 
 .btn-dot.red {
@@ -1016,23 +1112,34 @@ li {
     color: var(--text-muted);
 }
 
+/* IL CORPO DEL TERMINALE */
 .terminal-body {
     padding: 1.5rem;
     font-family: var(--font-mono);
     font-size: 0.9rem;
-    height: 350px;
+    text-align: left !important;
+    /* CORREZIONE: Allinea tutto a sinistra nativo */
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 }
 
+/* Forziamo il reset totale dell'allineamento per qualsiasi tag interno al terminale */
+.terminal-body * {
+    text-align: left !important;
+}
+
 .terminal-output {
     flex-grow: 1;
+    text-align: left !important;
+    /* CORREZIONE: Forza l'output a sinistra */
 }
 
 .output-line {
     margin-bottom: 0.5rem;
     white-space: pre-wrap;
+    text-align: left !important;
+    /* CORREZIONE: Impedisce i ritorni a capo strani a destra */
 }
 
 .system-msg {
@@ -1074,6 +1181,7 @@ li {
     caret-color: var(--primary-cyan);
 }
 
+/* I PULSANTI CLICCABILI SOTTO */
 .terminal-shortcuts {
     display: flex;
     gap: 1rem;
@@ -1099,11 +1207,70 @@ li {
     background-color: rgba(0, 229, 255, 0.05);
 }
 
+
+/* ==========================================================================
+   RESPONSIVE & MEDIA QUERIES DETTAGLIATE
+   ========================================================================== */
+
+/* --- DESKTOP & TABLET (Ingrandiamo l'altezza per invitare all'input) --- */
+@media (min-width: 577px) {
+    .terminal-body {
+        height: 480px;
+        /* CORREZIONE: Alza il terminale a 480px per far vedere l'input */
+    }
+}
+
+/* --- MOBILE (Risolviamo i problemi di spazio e incolonnamento) --- */
+@media (max-width: 576px) {
+    .section-terminal {
+        padding: 3rem 1rem;
+        /* Riduce i margini esterni della sezione */
+    }
+
+
+    .terminal-body {
+        height: 320px;
+        /* CORREZIONE: Su mobile lo teniamo più basso per non farlo strabordare */
+        padding: 1rem;
+    }
+
+    /* Testo rimpicciolito per non andare a capo male */
+    .terminal-body,
+    .output-line,
+    #terminal-input {
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Forza l'allineamento a sinistra assoluto di ogni riga su mobile */
+    .output-line,
+    .system-msg,
+    .terminal-output {
+        text-align: left !important;
+    }
+
+    /* RISOLUZIONE PULSANTI SOTTO: Li mettiamo tutti in colonna singola, uno sotto l'altro */
+    .terminal-shortcuts {
+        flex-direction: column !important;
+        gap: 0.6rem !important;
+        width: 100%;
+    }
+
+    .shortcut-btn {
+        width: 100% !important;
+        display: block !important;
+        text-align: center;
+        padding: 0.75rem;
+        /* Più facile da tappare */
+        font-size: 0.85rem;
+    }
+}
+
 /* ==========================================================================
    6. QUEST LOG (CONTACT FORM)
    ========================================================================== */
 .section-contact {
-    padding: 6rem 2rem 8rem 2rem;
+    padding: 6rem 2rem 4rem 2rem;
     background-color: var(--bg-dark);
     display: flex;
     justify-content: center;
@@ -1121,10 +1288,26 @@ li {
     padding: 2.5rem;
 }
 
-.contact-subtitle {
-    color: var(--text-muted);
-    font-size: 1rem;
+/* Briefing di missione stilizzato */
+.quest-briefing {
+    text-align: center;
     margin-bottom: 2rem;
+}
+
+.card-log-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--primary-cyan);
+    letter-spacing: 1px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.quest-briefing p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .quest-form {
@@ -1147,15 +1330,17 @@ li {
     letter-spacing: 0.5px;
 }
 
+/* Input più profondi e scuri */
 .form-group input,
 .form-group textarea {
-    background-color: var(--bg-dark);
+    background-color: #050709;
+    /* Profondità visiva */
     border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 0.75rem 1rem;
     color: var(--text-main);
     font-family: var(--font-sans);
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: var(--transition-smooth);
 }
 
@@ -1171,27 +1356,138 @@ li {
     font-size: 0.9rem;
 }
 
-.btn-submit {
-    align-self: flex-start;
+/* Contenitore pulsanti centrato */
+.form-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
     margin-top: 1rem;
 }
 
-@media (max-width: 480px) {
-    .btn-submit {
+/* Nuovo stile dei pulsanti "Quest" */
+.btn-quest {
+    padding: 0.8rem 1.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* Bottone Principale (Neon Outline Ciano) */
+.btn-quest.primary {
+    background: transparent;
+    border: 1px solid var(--primary-cyan);
+    color: var(--primary-cyan);
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.4);
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.05);
+}
+
+.btn-quest.primary:hover {
+    background-color: var(--primary-cyan);
+    color: #000;
+    box-shadow: 0 0 15px var(--primary-cyan);
+    text-shadow: none;
+}
+
+/* Bottone CV Secondario (Muted/Tecnico) */
+.btn-quest.secondary {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+.btn-quest.secondary:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 576px) {
+    .contact-box {
+        padding: 1.5rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-quest {
         width: 100%;
-        text-align: center;
     }
 }
 
 /* ==========================================================================
    7. FOOTER
    ========================================================================== */
-.main-footer {
+/* --- SYSTEM FOOTER (TRASFORMATO IN STATUS BAR) --- */
+.site-footer {
+    padding: 2.5rem 2rem;
     text-align: center;
-    padding: 2rem;
+    background-color: var(--bg-dark);
+    /* Stesso sfondo della sezione per non creare blocchi netti */
+    position: relative;
+}
+
+/* Creiamo una linea di divisione hi-tech con un micro-effetto glow */
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    /* La linea non prende tutto lo schermo, fa molto più "interfaccia modulare" */
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+
+/* Trasformiamo i link in piccoli nodi di sistema */
+.footer-link {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    /* Più piccolo e discreto */
     color: var(--text-muted);
-    border-top: 1px solid var(--border-color);
-    background-color: #090B0E;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: var(--transition-smooth);
+}
+
+/* Effetto al passaggio del mouse: si illumina delicatamente */
+.footer-link:hover {
+    color: var(--primary-cyan);
+    border-color: rgba(0, 229, 255, 0.2);
+    background-color: rgba(0, 229, 255, 0.02);
+    text-shadow: 0 0 5px var(--primary-cyan);
+}
+
+.footer-credits {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.25);
+    font-family: var(--font-mono);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.code-keyword {
+    color: var(--primary-cyan);
+    /* O il colore che usi per le funzioni/keyword */
+    font-weight: bold;
 }

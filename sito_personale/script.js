@@ -22,8 +22,8 @@ Attitudine: Autonomia decisionale, forte orientamento al problem solving pratico
 > Filosofia: L'IA è un moltiplicatore di potenziale. Va governata, assecondata e integrata nel codice per automatizzare compiti complessi a vantaggio del business.`,
     
     startup: `<span class="success-text">[ENVIRONMENT VARIABLES - STARTUP]</span>
-> Ruolo: Data Analyst / Stage post-laurea.
-> Stack utilizzato: SQL per modellazione e query, Python (fondamenti) per scripting, PowerBI per visualizzazione metriche di business.
+> Ruolo: Data Analyst / Stage .
+> Stack utilizzato: SQL per modellazione e query, Python (fondamenti) per scripting, Excel per data cleaning e PowerBI per visualizzazione metriche di business.
 > Mindset acquisito: Lavorare in contesti agili ad alta dinamicità. Capacità di interpretare le richieste dei dati per trasformarle in logica software backend.`
 };
 
@@ -39,7 +39,7 @@ function executeCommand(cmd) {
     // Creiamo la riga del prompt che simula la digitazione effettuata
     const commandLine = document.createElement('p');
     commandLine.className = 'output-line';
-    commandLine.innerHTML = `<span class="prompt-text">salvatoreleone@core:~$</span> ${cleanCmd}`;
+    commandLine.innerHTML = `<span class="prompt-text">sl@core:~$</span> ${cleanCmd}`;
     logDisplay.appendChild(commandLine);
 
     if (cleanCmd === '') {

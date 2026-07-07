@@ -159,23 +159,27 @@
                         </div>
                         <div class="card-body">
                             <ul class="attributes-list">
-                                <li><span class="attr-name">ROLE:</span> <span class="attr-value">Backend-Focused Full
-                                        Stack</span></li>
-                                <li><span class="attr-name">CLASS:</span> <span class="attr-value">Problem Solver /
-                                        Process Architect</span></li>
+                                <li><span class="attr-name">ROLE:</span> <span class="attr-value">Full Stack - Backend
+                                        Focused</span></li>
+                                <li><span class="attr-name">NEURAL PROFILE:</span> <span
+                                        class="attr-value cyan-highlight">Multipotentialite</span></li>
                                 <li><span class="attr-name">MINDSET:</span> <span class="attr-value">Data-Driven &
                                         AI-Augmented</span></li>
                             </ul>
                             <div class="profile-bio">
                                 <p>
-                                    Il mio percorso nasce dalla progettazione strutturata. Spinto dalla passione per
-                                    l'analisi dei dati e la complessità, ho trovato nella programmazione il mio habitat
-                                    naturale per ingegnerizzare soluzioni reali.
+                                    <span class="card-log-tag">[LOG_LEGACY]:</span><br>
+                                    Il mio approccio all'ingegneria del software affonda le radici in 10 anni di
+                                    progettazione tecnica strutturata nei settori civile e nautico d'élite, dove ho
+                                    programmato macchinari industriali CNC ottimizzando flussi e logiche sequenziali
+                                    millimetriche.
                                 </p>
                                 <p>
-                                    Credo che l'Intelligenza Artificiale non vada subita ma governata. La integro
-                                    attivamente per automatizzare flussi complessi, ottimizzando i database e la logica
-                                    core che fa muovere l'applicazione.
+                                    <span class="card-log-tag">[LOG_EVOLUTION]:</span><br>
+                                    Ho convertito questa forma mentis geometrica e analitica nel codice puro. Oggi
+                                    sviluppo architetture frontend e backend stabili integrando attivamente le
+                                    tecnologie AI per
+                                    governare la complessità, ottimizzare database e automatizzare flussi di dati reali.
                                 </p>
                             </div>
                         </div>
@@ -185,7 +189,7 @@
                     <div class="rpg-column inventory-card">
                         <div class="card-header">
                             <span class="status-indicator cyan"></span>
-                            <h3>Core Equipment (Inventory)</h3>
+                            <h3>Core Equipment: <span class="text-cyan">Inventory</span></h3>
                         </div>
 
                         <div class="inventory-wrapper">
@@ -286,7 +290,7 @@
                             <span class="btn-dot yellow"></span>
                             <span class="btn-dot green"></span>
                         </div>
-                        <div class="terminal-title">salvatoreleone@backend-core: ~</div>
+                        <div class="terminal-title">sl@backend-core: ~</div>
                     </div>
 
                     <div class="terminal-body">
@@ -296,19 +300,15 @@
                                 system routines.</p>
                             <br>
                             <div id="log-display">
-                                <p class="output-line"><span class="prompt-text">salvatoreleone@core:~$</span> cat
-                                    vision_ai_integration.sh</p>
-                                <p class="output-line muted-text">> Integrating Google Vision API into Laravel
-                                    environment...</p>
-                                <p class="output-line muted-text">> Content moderation module: ACTIVE (Checking user
-                                    uploads, blurring faces, generating context payload).</p>
-                                <p class="output-line success-text">> Status: Optimization achieved. AI governed
-                                    successfully.</p>
+                                <p class="output-line"><span class="prompt-text">sl@core:~$</span> cat vision_ai_integration.sh</p>
+                                <p class="output-line muted-text">> Integrating Google Vision API into Laravel environment...</p>
+                                <p class="output-line muted-text">> Content moderation module: ACTIVE (Checking user uploads, blurring faces, generating context payload).</p>
+                                <p class="output-line success-text">> Status: Optimization achieved. AI governed successfully.</p>
                             </div>
                         </div>
 
                         <div class="terminal-input-line">
-                            <span class="prompt-text">salvatoreleone@core:~$</span>
+                            <span class="prompt-text">sl@core:~$</span>
                             <input type="text" id="terminal-input" autocomplete="off"
                                 placeholder="type 'help' or explore buttons below..." autofocus>
                         </div>
@@ -332,10 +332,14 @@
                 <h2 class="section-title"><span class="tech-comment">//</span> Start a New Quest</h2>
 
                 <div class="contact-box">
-                    <p class="contact-subtitle">
-                        Sei un recruiter o un'azienda alla ricerca di un developer orientato ai processi e al backend?
-                        Invia una richiesta di contatto per avviare la sessione.
-                    </p>
+                    <div class="quest-briefing">
+                        <span class="card-log-tag">[MISSION_BRIEFING]</span>
+                        <p>
+                            Sei un recruiter o un'azienda alla ricerca di un developer orientato ai processi e al
+                            backend?
+                            Invia una richiesta di contatto per avviare la sessione o scarica il dossier completo.
+                        </p>
+                    </div>
 
                     <form name="recruiter-contact" method="POST" data-netlify="true" class="quest-form">
 
@@ -355,10 +359,14 @@
                         <div class="form-group">
                             <label for="message">Quest Objectives (Message)</label>
                             <textarea id="message" name="message" rows="5" required
-                                placeholder="Descrivi brevemente l'opportunità da remoto o il progetto..."></textarea>
+                                placeholder="Descrivi brevemente l'opportunità o il progetto..."></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-submit">Deploy Message 🚀</button>
+                        <!-- Riga pulsanti bilanciata -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn-quest primary">INITIALIZE DEPLOY</button>
+                            <a href="percorso-al-tuo-cv.pdf" download class="btn-quest secondary">DOWNLOAD CV.EXE</a>
+                        </div>
                     </form>
                 </div>
 
@@ -368,8 +376,12 @@
     </main>
 
     <!-- Footer -->
-    <footer class="main-footer">
-        <p>&copy; 2026 Salvatore Leone. All rights reserved. Powered by Netlify.</p>
+    <footer class="site-footer">
+        <div class="footer-socials">
+            <a href="https://github.com/turelion" target="_blank" class="footer-link">[GITHUB]</a>
+            <a href="https://www.linkedin.com/in/salvatore-leone-full-stack-devback/" target="_blank" class="footer-link">[LINKEDIN]</a>
+        </div>
+        <p class="footer-credits"><span class="code-keyword">while</span>(salvatore_leone.hp &gt; 0) {dev_mode = <span class="code-keyword">true</span>;} &copy;2026 all rights reserved.</p>
     </footer>
 
     <!-- Collegamento al JavaScript (defer lo carica alla fine per non bloccare la pagina) -->
