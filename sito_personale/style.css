@@ -1004,9 +1004,36 @@ li {
    DINAMISMO MOBILE (Incolonnamento Perfetto Sotto i 480px)
    ========================================================================== */
 @media (max-width: 480px) {
+    /* Impediamo a monte che la sezione possa generare overflow orizzontale */
+    .section-profile {
+        padding: 4rem 1rem !important; /* Riduciamo leggermente il padding laterale a 1rem per dare più spazio alle card */
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .profile-container {
+        width: 100%;
+    }
+
     .rpg-character-layout {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        width: 100%;
+    }
+
+    /* Forza tutte le colonne a non superare mai la larghezza dello schermo */
+    .rpg-column {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+        min-height: auto !important; /* Evita altezze vuote eccessive su mobile */
+    }
+
+    /* FIX OLOGRAMMA: Resettiamo il margine ereditato dal desktop */
+    .scan-status-text {
+        margin-left: 0 !important; /* Elimina la spinta a destra */
+        text-align: center;
+        width: 100%;
     }
 
     /* Forza l'incolonnamento verticale: prima la griglia, sotto lo zaino */
@@ -1015,28 +1042,38 @@ li {
         grid-template-columns: 1fr;
         gap: 2rem;
         justify-items: center;
+        width: 100%;
     }
 
-    /* La griglia prende tutto il lato orizzontale disponibile dello smartphone */
+    /* Ottimizzazione Griglia: passiamo a 4 colonne per non rompere il layout sui 412px del Pixel */
     .inventory-grid {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr) !important; 
         width: 100%;
-        gap: 0.4rem;
+        max-width: 280px; /* Contiene la griglia per non farla spandere sui bordi */
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    /* FORZIAMO lo slot a calcolarsi in modo fluido e a rimanere un quadrato perfetto */
+    .inventory-item-slot {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
     }
 
     .item-icon {
-        font-size: 1.60rem;
+        font-size: 1.50rem; /* Leggermente ridimensionata per stare comoda nei quadratini su schermi stretti */
     }
 
     .item-icon-svg {
-        width: 1.6rem;
-        height: 1.6rem;
+        width: 1.5rem;
+        height: 1.5rem;
     }
 
     /* Lo zaino su mobile si rimpicciolisce e sta al centro sotto le icone */
     .backpack-custom-container {
         width: 100%;
-        max-width: 130px;
+        max-width: 120px;
         margin: 0 auto;
         text-align: center;
     }
@@ -1044,7 +1081,7 @@ li {
     .backpack-custom-img {
         width: 100%;
         height: auto;
-        max-height: 160px;
+        max-height: 150px;
         object-fit: contain;
         display: block;
         margin: 0 auto;
