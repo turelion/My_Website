@@ -4,16 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SL_CORE // Quest Initialized</title>
+    <link rel="icon" type="image/x-icon" href="media/favicon.ico">
     <link rel="stylesheet" href="style.css"> 
     <style>
-        /* Micro-stili specifici per centrare il messaggio di successo nello schermo */
+        /* Allineamento variabili generali */
+        :root {
+            --bg-dark: #0a0a0c; /* Inserisci il colore del tuo sfondo se differisce */
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* FIX LOGO: Spaziatura interna della Navbar per staccare il logo dai bordi */
+        .rpg-navbar {
+            padding: 1.5rem 2rem; /* Alza e distanzia lateralmente su Desktop/Tablet */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
         .success-wrapper {
             min-height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 1.5rem; /* Ridotto leggermente per dare respiro su mobile */
+            box-sizing: border-box;
         }
+
         .success-box {
             background-color: var(--bg-surface);
             border: 1px solid var(--primary-cyan);
@@ -23,7 +44,9 @@
             width: 100%;
             text-align: center;
             box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+            box-sizing: border-box; /* Forza i padding a rimanere DENTRO la larghezza */
         }
+
         .success-title {
             color: var(--primary-cyan);
             font-family: var(--font-mono);
@@ -31,13 +54,16 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
             letter-spacing: 1px;
+            word-wrap: break-word; /* Impedisce a parole lunghe di spaccare la box */
         }
+
         .success-text {
             color: var(--text-muted);
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 2.5rem;
         }
+
         .btn-back {
             display: inline-block;
             background: transparent;
@@ -51,10 +77,31 @@
             border-radius: 4px;
             transition: var(--transition-smooth);
         }
+
         .btn-back:hover {
             border-color: var(--primary-cyan);
             color: var(--primary-cyan);
             box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+
+        /* RESPONSIVE MOBILE (< 480px) */
+        @media (max-width: 480px) {
+            .rpg-navbar {
+                padding: 1.2rem 1.2rem; /* Spaziatura bilanciata per il logo su smartphone */
+            }
+
+            .success-title {
+                font-size: 1.3rem; /* Rimpicciolisce il titolo per farlo stare in una riga sola */
+            }
+
+            .success-box {
+                padding: 2rem 1.2rem; /* Riduce il padding interno per non far strabordare il box */
+                width: 100%;
+            }
+
+            .success-text {
+                font-size: 0.9rem; /* Testo leggermente più leggibile sui display piccoli */
+            }
         }
     </style>
 </head>
