@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SL_CORE // Quest Initialized</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Micro-stili specifici per centrare il messaggio di successo nello schermo */
+        .success-wrapper {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .success-box {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 6px;
+            padding: 3rem 2rem;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+        }
+        .success-title {
+            color: var(--primary-cyan);
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+        .success-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+        .btn-back {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+        .btn-back:hover {
+            border-color: var(--primary-cyan);
+            color: var(--primary-cyan);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="rpg-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo font-mono">SL<span class="cursor">_</span></a>
+        </div>
+    </header>
+
+    <main class="success-wrapper">
+        <div class="success-box">
+            <div class="success-title">[DEPLOY_SUCCESSFUL]</div>
+            <p class="success-text">
+                <span class="cyan-text">> QUEST_STATUS: INITIALIZED</span><br><br>
+                I dati di contatto sono stati caricati correttamente nel Core Database.<br>
+                La sessione con lo sviluppatore <strong>Salvatore Leone</strong> è stata registrata. 
+                Riceverai un ping di risposta sulla tua coordinata email a breve.
+            </p>
+            <a href="index.html" class="btn-back">> RETURN_TO_CORE</a>
+        </div>
+    </main>
+
+</body>
+</html>
