@@ -324,6 +324,12 @@ li {
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
+/* Classe per congelare lo sfondo quando il menu è attivo */
+body.menu-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
 /* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width: 850px) {
     .rpg-hud-horizontal {

@@ -9,18 +9,18 @@ const commandDatabase = {
   <span class="cyan-text">ai</span>        - Log sull'integrazione di Intelligenza Artificiale nei progetti.
   <span class="cyan-text">startup</span>   - Dettagli sull'esperienza come Data Analyst.
   <span class="cyan-text">clear</span>     - Pulisce la console.`,
-    
+
     about: `<span class="success-text">[LOADING PROFILE]...</span>
 Nome: Salvatore Leone
 Ruolo Target: Full Stack Developer / Backend Specialist
 Focus: Ingegnerizzazione dei processi, architetture scalabili, pulizia del codice.
 Attitudine: Autonomia decisionale, forte orientamento al problem solving pratico derivato da background industriale.`,
-    
+
     ai: `<span class="success-text">[DEVOPS LOG - AI_INTEGRATION]</span>
 > Tecnologia applicata: Google Vision API integrata in ambiente Laravel.
 > Task eseguiti: Sviluppo del modulo di moderazione dei contenuti. Controllo idoneità delle immagini caricate dagli utenti, oscuramento automatico dei volti (privacy) e generazione di report contestuali in formato JSON.
 > Filosofia: L'IA è un moltiplicatore di potenziale. Va governata, assecondata e integrata nel codice per automatizzare compiti complessi a vantaggio del business.`,
-    
+
     startup: `<span class="success-text">[ENVIRONMENT VARIABLES - STARTUP]</span>
 > Ruolo: Data Analyst / Stage .
 > Stack utilizzato: SQL per modellazione e query, Python (fondamenti) per scripting, Excel per data cleaning e PowerBI per visualizzazione metriche di business.
@@ -35,7 +35,7 @@ const shortcutButtons = document.querySelectorAll('.shortcut-btn');
 // 3. Funzione per eseguire un comando
 function executeCommand(cmd) {
     const cleanCmd = cmd.trim().toLowerCase();
-    
+
     // Creiamo la riga del prompt che simula la digitazione effettuata
     const commandLine = document.createElement('p');
     commandLine.className = 'output-line';
@@ -67,7 +67,7 @@ function executeCommand(cmd) {
 }
 
 // 4. Event Listener per la digitazione da tastiera (Tasto Invio)
-terminalInput.addEventListener('keydown', function(e) {
+terminalInput.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
         const command = this.value;
         executeCommand(command);
@@ -77,7 +77,7 @@ terminalInput.addEventListener('keydown', function(e) {
 
 // 5. Event Listener per i pulsanti di scelta rapida (Shortcuts)
 shortcutButtons.forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
         const command = this.getAttribute('data-cmd');
         executeCommand(command);
     });
@@ -91,12 +91,12 @@ shortcutButtons.forEach(button => {
 function updateRPGStatus() {
     // MODIFICA QUI: Inserisci la tua data di nascita reale (AAAA, MM [0-11], GG)
     // Nota: i mesi in JS partono da 0 (0 = Gennaio, 5 = Giugno, 6 = Luglio, ecc.)
-    const birthDate = new Date(1992, 5, 11); 
+    const birthDate = new Date(1992, 5, 11);
     const today = new Date();
 
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    
+
     // Controllo se il compleanno di quest'anno è già passato
     let lastBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
@@ -140,15 +140,23 @@ const menuText = document.querySelector('.menu-text');
 menuTrigger.addEventListener('click', () => {
     gameOverlay.classList.toggle('active');
     const isActive = gameOverlay.classList.contains('active');
-    
+
     // Cambia il testo da MENU a CLOSE stile gioco
     menuText.innerText = isActive ? 'CLOSE' : 'MENU';
+
+    // CONGELAMENTO SFONDO: Se il menu è attivo aggiunge la classe, altrimenti la toglie
+    if (isActive) {
+        document.body.classList.add('menu-open');
+    } else {
+        document.body.classList.remove('menu-open');
+    }
 });
 
-// Chiude l'overlay al click su un link
+// Chiude l'overlay al click su un link (e sblocca lo sfondo)
 overlayLinks.forEach(link => {
     link.addEventListener('click', () => {
         gameOverlay.classList.remove('active');
+        document.body.classList.remove('menu-open'); // Ripristina lo scorrimento
         menuText.innerText = 'MENU';
     });
 });
