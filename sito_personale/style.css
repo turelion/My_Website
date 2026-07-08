@@ -1051,7 +1051,8 @@ li {
         width: 100%;
         max-width: 280px; /* Contiene la griglia per non farla spandere sui bordi */
         gap: 0.5rem;
-        justify-content: center;
+        justify-self: center !important;
+        margin: 0 auto !important;
     }
 
     /* FORZIAMO lo slot a calcolarsi in modo fluido e a rimanere un quadrato perfetto */
