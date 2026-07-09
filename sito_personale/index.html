@@ -4,44 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salvatore Leone | Full Stack BackDev </title>
-    <link rel="icon" type="image/x-icon" href="media/favicon.ico">
+    <title>Salvatore Leone | Full Stack DevBack</title>
+    
+    <!-- BRANDING: Definizione della Favicon personalizzata stile terminale -->
+    <link class="favicon-node" rel="icon" type="image/x-icon" href="media/favicon.ico">
 
-    <!-- Google Fonts -->
+    <!-- FONTS: Fira Code per il feeling da terminale (mono) e Plus Jakarta Sans per l'interfaccia dell'HUD -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
-    <!-- Devicon -->
+    <!-- CORE EQUIPMENT: Devicon set per caricare i vettoriali del parco tecnologico -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-    <!-- Collegamento al CSS -->
+    <!-- ARCHITECTURE: Foglio di stile centrale del portfolio -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Header / Navbar Minimal & Balanced -->
+    <!-- ==========================================
+         TOP BAR & RPG HUD SYSTEM
+         ========================================== -->
     <header class="main-header">
         <div class="header-left">
+            <!-- Il mio brand minimale. Il cursore simboleggia lo stato di sviluppo perenne -->
             <div class="logo">SL<span class="terminal-cursor">_</span></div>
         </div>
 
+        <!-- HUD ORIZZONTALE: Gamification dei parametri utente. 
+             Mostra i miei dati reali (Lvl = Età) e gestisce l'esperienza (XP) via script.js -->
         <div class="rpg-hud-horizontal">
             <div class="hud-profile-block">
+                <!-- Avatar custom minimale in SVG -->
                 <svg class="tech-avatar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="3" stroke="#BD93F9" stroke-width="2" />
                     <circle cx="12" cy="4" r="2" stroke="#00E5FF" stroke-width="1.5" />
                     <circle cx="5" cy="16" r="2" stroke="#00E5FF" stroke-width="1.5" />
                     <circle cx="19" cy="16" r="2" stroke="#00E5FF" stroke-width="1.5" />
-                    <path d="M12 6V9M7 15L10 13M17 15L14 13" stroke="#4A5568" stroke-width="1.5"
-                        stroke-linecap="round" />
+                    <path d="M12 6V9M7 15L10 13M17 15L14 13" stroke="#4A5568" stroke-width="1.5" stroke-linecap="round" />
                 </svg>
                 <div class="hud-level-badge">LVL <span id="rpg-level">34</span></div>
             </div>
 
+            <!-- Parametri vitali (HP) e risorsa speciale (SP - Study points) -->
             <div class="hud-item">
                 <span class="hud-label red-text">HP</span>
                 <div class="bar-track">
@@ -56,6 +62,7 @@
                 </div>
             </div>
 
+            <!-- XP bar agganciata via JS allo scroll della pagina per tracciare la progressione della lettura -->
             <div class="hud-item">
                 <span class="hud-label cyan-text">XP</span>
                 <div class="bar-track">
@@ -65,6 +72,7 @@
             </div>
         </div>
 
+        <!-- CONTROLLO INTERFACCIA: Trigger del menu di pausa (Mobile/Desktop hamburger) -->
         <button class="menu-trigger" aria-label="Toggle Menu">
             <span class="menu-text">MENU</span>
             <div class="hamburger-lines">
@@ -74,10 +82,12 @@
         </button>
     </header>
 
-    <div class="game-overlay-menu">
+    <!-- MENU DI PAUSA GIOCATORE: Sovrappone un overlay bloccando lo scroll nativo tramite JS -->
+    <div class="game-overlay-menu" aria-hidden="true">
         <div class="overlay-content">
             <div class="overlay-meta">// SYSTEM_PAUSE_MODE</div>
 
+            <!-- Slot di ricezione per l'HUD iniettato dinamicamente via JS in modalità mobile -->
             <div class="mobile-hud-display"></div>
 
             <nav class="overlay-nav">
@@ -89,10 +99,12 @@
         </div>
     </div>
 
-    <!-- Contenitore Principale -->
+    <!-- ==========================================
+         MAIN CONTENT LAYER
+         ========================================== -->
     <main>
 
-        <!-- 1. HERO SECTION -->
+        <!-- 1. HERO SECTION: Presentazione e posizionamento di mercato -->
         <section id="hero" class="section-hero">
             <div class="hero-container">
 
@@ -108,8 +120,8 @@
                 </h1>
 
                 <p class="hero-subtitle">
-                    Sono un <strong>Full Stack Developer</strong> con un'evoluzione verticale verso il
-                    <strong>Backend</strong>. Progetto architetture pulite, ottimizzo processi e governo l'Intelligenza
+                    Sono un <strong>Full Stack Developer</strong> con un'evoluzione verticale verso il 
+                    <strong>Backend</strong>. Progetto architetture pulite, ottimizzo processi e governo l'Intelligenza 
                     Artificiale per creare soluzioni software scalabili e data-driven.
                 </p>
 
@@ -119,7 +131,7 @@
                 </div>
             </div>
 
-            <!-- Un indicatore mouse per invitare a scrollare verso il basso -->
+            <!-- Elemento UX: Invito visivo allo scroll adattato per performance mobile -->
             <div class="scroll-indicator">
                 <span class="mouse">
                     <span class="wheel"></span>
@@ -128,7 +140,7 @@
             </div>
         </section>
 
-        <!-- 2. CHARACTER SHEET -->
+        <!-- 2. CHARACTER SHEET: Chi sono, background professionale e competenze (Inventory) -->
         <section id="profile" class="section-profile">
             <div class="profile-container">
 
@@ -136,15 +148,12 @@
 
                 <div class="rpg-character-layout">
 
-                    <!-- COLONNA 1: BIOMETRIC SCAN -->
+                    <!-- COLONNA 1: SCANNER BIOMETRICO (Visual Element) -->
                     <div class="rpg-column face-scan-ghost">
-
-                        <!-- NUOVO BADGE IDENTIFICATIVO IN STILE VIDEO GIOCO -->
                         <div class="scan-header-system font-mono">
                             <span class="scan-label">BIOMETRIC SCAN ID:</span>
                             <span class="scan-name-badge">SALVATORE LEONE</span>
                         </div>
-
                         <div class="scan-frame">
                             <img src="media/My3dScan.png" alt="Salvatore Leone 3D Scan" class="user-3d-avatar">
                             <div class="laser-line"></div>
@@ -152,7 +161,7 @@
                         <div class="scan-status-text font-mono">[SCANNING_PERSONALITY... SUCCESS]</div>
                     </div>
 
-                    <!-- COLONNA 2: ATTRIBUTES & TRAITS -->
+                    <!-- COLONNA 2: ATTRIBUTI (Background Professionale) -->
                     <div class="rpg-column attributes-card">
                         <div class="card-header">
                             <span class="status-indicator"></span>
@@ -160,33 +169,25 @@
                         </div>
                         <div class="card-body">
                             <ul class="attributes-list">
-                                <li><span class="attr-name">ROLE:</span> <span class="attr-value">Full Stack - Backend
-                                        Focused</span></li>
-                                <li><span class="attr-name">NEURAL PROFILE:</span> <span
-                                        class="attr-value cyan-highlight">Multipotentialite</span></li>
-                                <li><span class="attr-name">MINDSET:</span> <span class="attr-value">Data-Driven &
-                                        AI-Augmented</span></li>
+                                <li><span class="attr-name">ROLE:</span> <span class="attr-value">Full Stack - Backend Focused</span></li>
+                                <li><span class="attr-name">NEURAL PROFILE:</span> <span class="attr-value cyan-highlight">Multipotentialite</span></li>
+                                <li><span class="attr-name">MINDSET:</span> <span class="attr-value">Data-Driven & AI-Augmented</span></li>
                             </ul>
                             <div class="profile-bio">
+
                                 <p>
                                     <span class="card-log-tag">[LOG_LEGACY]:</span>
-                                    Il mio approccio all'ingegneria del software affonda le radici in 10 anni di
-                                    progettazione tecnica strutturata nei settori civile e nautico d'élite, dove ho
-                                    programmato macchinari industriali CNC ottimizzando flussi e logiche sequenziali
-                                    millimetriche.
+                                    Il mio approccio all'ingegneria del software affonda le radici in 10 anni di progettazione tecnica strutturata nei settori civile e nautico d'élite, dove ho programmato macchinari industriali CNC ottimizzando flussi e logiche sequenziali millimetriche.
                                 </p>
                                 <p>
                                     <span class="card-log-tag">[LOG_EVOLUTION]:</span>
-                                    Ho convertito questa forma mentis geometrica e analitica nel codice puro. Oggi
-                                    sviluppo architetture frontend e backend integrando le
-                                    tecnologie AI per
-                                    governare la complessità, ottimizzare database e automatizzare flussi di dati reali.
+                                    Ho convertito questa forma mentis geometrica e analitica nel codice puro. Oggi sviluppo architetture frontend e backend integrando le tecnologie AI per governare la complessità, ottimizzare database e automatizzare flussi di dati reali.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- COLONNA 3: TECH INVENTORY -->
+                    <!-- COLONNA 3: INVENTARIO DELLE COMPETENZE (Stack Tecnologico) -->
                     <div class="rpg-column inventory-card">
                         <div class="card-header">
                             <span class="status-indicator cyan"></span>
@@ -194,77 +195,52 @@
                         </div>
 
                         <div class="inventory-wrapper">
+                            <!-- Griglia interattiva: l'attributo data-item viene stampato a video via JS al passaggio del mouse -->
                             <div class="inventory-grid">
-                                <!-- RIGA 1 -->
-                                <div class="inventory-item-slot" data-item="HTML5"><i
-                                        class="devicon-html5-plain item-icon"></i></div>
-                                <div class="inventory-item-slot" data-item="CSS3"><i
-                                        class="devicon-css3-plain item-icon"></i></div>
-                                <div class="inventory-item-slot" data-item="Bootstrap"><i
-                                        class="devicon-bootstrap-plain item-icon"></i></div>
-                                <div class="inventory-item-slot" data-item="JavaScript"><i
-                                        class="devicon-javascript-plain item-icon"></i></div>
-                                <div class="inventory-item-slot" data-item="Node.js"><i
-                                        class="devicon-nodejs-plain item-icon"></i></div>
+                                <!-- RIGA 1: Front-end Base & Runtime Env -->
+                                <div class="inventory-item-slot" data-item="HTML5"><i class="devicon-html5-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="CSS3"><i class="devicon-css3-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="Bootstrap"><i class="devicon-bootstrap-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="JavaScript"><i class="devicon-javascript-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="Node.js"><i class="devicon-nodejs-plain item-icon"></i></div>
 
-                                <!-- RIGA 2 -->
-                                <div class="inventory-item-slot core-item" data-item="PHP"><i
-                                        class="devicon-php-plain item-icon"></i></div>
-                                <div class="inventory-item-slot core-item" data-item="Laravel"><i
-                                        class="devicon-laravel-original item-icon"></i></div>
-
-                                <!-- ICONA FORTIFY: Castello/Fortezza in SVG -->
+                                <!-- RIGA 2: Core Stack Backend & security -->
+                                <div class="inventory-item-slot core-item" data-item="PHP"><i class="devicon-php-plain item-icon"></i></div>
+                                <div class="inventory-item-slot core-item" data-item="Laravel"><i class="devicon-laravel-original item-icon"></i></div>
                                 <div class="inventory-item-slot" data-item="Laravel Fortify">
-                                    <svg class="item-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="item-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                         <path d="m9 11 2 2 4-4"></path>
                                     </svg>
                                 </div>
+                                <div class="inventory-item-slot" data-item="Livewire"><i class="devicon-livewire-plain item-icon"></i></div>
+                                <div class="inventory-item-slot core-item" data-item="SQL Database"><i class="devicon-azuresqldatabase-plain item-icon"></i></div>
 
-                                <div class="inventory-item-slot" data-item="Livewire"><i
-                                        class="devicon-livewire-plain item-icon"></i></div>
-                                <div class="inventory-item-slot core-item" data-item="SQL Database"><i
-                                        class="devicon-azuresqldatabase-plain item-icon"></i></div>
-
-                                <!-- RIGA 3 -->
-                                <div class="inventory-item-slot" data-item="Python"><i
-                                        class="devicon-python-plain item-icon"></i></div>
-
-                                <!-- ICONA POWERBI: Grafico a Colonne Verticali in SVG -->
+                                <!-- RIGA 3: Data Analysis & Controllo Versione -->
+                                <div class="inventory-item-slot" data-item="Python"><i class="devicon-python-plain item-icon"></i></div>
                                 <div class="inventory-item-slot" data-item="PowerBI">
-                                    <svg class="item-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="item-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <line x1="18" y1="20" x2="18" y2="10"></line>
                                         <line x1="12" y1="20" x2="12" y2="4"></line>
                                         <line x1="6" y1="20" x2="6" y2="14"></line>
                                         <line x1="3" y1="20" x2="21" y2="20"></line>
                                     </svg>
                                 </div>
+                                <div class="inventory-item-slot" data-item="Excel"><i class="devicon-windows8-original item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="Scrum (Agile)"><i class="devicon-trello-plain item-icon"></i></div>
+                                <div class="inventory-item-slot" data-item="Git"><i class="devicon-git-plain item-icon"></i></div>
 
-                                <div class="inventory-item-slot" data-item="Excel"><i
-                                        class="devicon-windows8-original item-icon"></i></div>
-                                <div class="inventory-item-slot" data-item="Scrum (Agile)"><i
-                                        class="devicon-trello-plain item-icon"></i></div>
-                                <div class="inventory-item-slot" data-item="Git"><i
-                                        class="devicon-git-plain item-icon"></i></div>
+                                <!-- RIGA 4: Cloud & Integrazioni Advanced -->
+                                <div class="inventory-item-slot" data-item="GitHub"><i class="devicon-github-original item-icon"></i></div>
+                                <div class="inventory-item-slot ai-item" data-item="Google Vision API"><i class="devicon-google-plain item-icon"></i></div>
 
-                                <!-- RIGA 4 -->
-                                <div class="inventory-item-slot" data-item="GitHub"><i
-                                        class="devicon-github-original item-icon"></i></div>
-                                <div class="inventory-item-slot ai-item" data-item="Google Vision API"><i
-                                        class="devicon-google-plain item-icon"></i></div>
-
-                                <!-- 3 Slot vuoti di espansione -->
-                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span
-                                        class="item-tag">[+]</span></div>
-                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span
-                                        class="item-tag">[+]</span></div>
-                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span
-                                        class="item-tag">[+]</span></div>
+                                <!-- Slot futuri bloccati (Espansione dello stack es. Java/Spring Enterprise) -->
+                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span class="item-tag">[+]</span></div>
+                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span class="item-tag">[+]</span></div>
+                                <div class="inventory-item-slot locked-slot" data-item="Locked Slot"><span class="item-tag">[+]</span></div>
                             </div>
 
-                            <!-- Area Zaino Custom Ingrandito -->
+                            <!-- Dettaglio estetico dello zaino equipaggiamento -->
                             <div class="backpack-custom-container">
                                 <img src="media/Bag.png" alt="Equipment Backpack" class="backpack-custom-img">
                                 <span class="backpack-label font-mono">EQUIP_BAG</span>
@@ -274,11 +250,9 @@
 
                 </div>
             </div>
-
-            </div>
         </section>
 
-        <!-- 3. LIVE TERMINAL -->
+        <!-- 3. LIVE TERMINAL: Simulazione della console di logica ed esecuzione script -->
         <section id="terminal" class="section-terminal">
             <div class="terminal-container">
 
@@ -297,29 +271,25 @@
                     <div class="terminal-body">
                         <div class="terminal-output">
                             <p class="output-line system-msg">System initialization completed. All modules online.</p>
-                            <p class="output-line system-msg">Type <span class="cyan-text">help</span> to view available
-                                system routines.</p>
+                            <p class="output-line system-msg">Type <span class="cyan-text">help</span> to view available system routines.</p>
                             <br>
+                            <!-- Visualizzazione dinamica modificata via JavaScript tramite le scorciatoie o l'input utente -->
                             <div id="log-display">
-                                <p class="output-line"><span class="prompt-text">sl@core:~$</span> cat
-                                    vision_ai_integration.sh</p>
-                                <p class="output-line muted-text">> Integrating Google Vision API into Laravel
-                                    environment...</p>
-                                <p class="output-line muted-text">> Content moderation module: ACTIVE (Checking user
-                                    uploads, blurring faces, generating context payload).</p>
-                                <p class="output-line success-text">> Status: Optimization achieved. AI governed
-                                    successfully.</p>
+                                <p class="output-line"><span class="prompt-text">sl@core:~$</span> cat vision_ai_integration.sh</p>
+                                <p class="output-line muted-text">> Integrating Google Vision API into Laravel environment...</p>
+                                <p class="output-line muted-text">> Content moderation module: ACTIVE (Checking user uploads, blurring faces, generating context payload).</p>
+                                <p class="output-line success-text">> Status: Optimization achieved. AI governed successfully.</p>
                             </div>
                         </div>
 
                         <div class="terminal-input-line">
                             <span class="prompt-text">sl@core:~$</span>
-                            <input type="text" id="terminal-input" autocomplete="off"
-                                placeholder="type 'help' or explore buttons below...">
+                            <input type="text" id="terminal-input" autocomplete="off" placeholder="type 'help' or explore buttons below...">
                         </div>
                     </div>
                 </div>
 
+                <!-- Macro/Scorciatoie per esplorare velocemente le features senza obbligare alla digitazione -->
                 <div class="terminal-shortcuts">
                     <button class="shortcut-btn" data-cmd="about">cat about_me.md</button>
                     <button class="shortcut-btn" data-cmd="ai">cat ai_vision.log</button>
@@ -330,7 +300,7 @@
             </div>
         </section>
 
-        <!-- 4. QUEST LOG (Contatti Netlify) -->
+        <!-- 4. QUEST LOG: Form contatti statico intercettato nativamente dai server di Netlify -->
         <section id="contact" class="section-contact">
             <div class="contact-container">
 
@@ -340,18 +310,17 @@
                     <div class="quest-briefing">
                         <span class="card-log-tag">[MISSION_BRIEFING]</span>
                         <p>
-                            Sei un recruiter o un'azienda alla ricerca di un developer orientato ai processi e al
-                            backend?
+                            Sei un recruiter o un'azienda alla ricerca di un developer orientato ai processi e al backend?
                             Invia una richiesta di contatto per avviare la sessione o scarica il dossier completo.
                         </p>
                     </div>
 
+                    <!-- Configurazione form allineata con la documentazione Netlify e redirect custom su success.html -->
                     <form name="recruiter-contact" method="POST" netlify class="quest-form" action="/success.html">
 
                         <div class="form-group">
                             <label for="company">Company / Name</label>
-                            <input type="text" id="company" name="company" required
-                                placeholder="Es. Azienda Tech S.r.l. o Nome">
+                            <input type="text" id="company" name="company" required placeholder="Es. Azienda Tech S.r.l. o Nome">
                         </div>
 
                         <div class="form-group">
@@ -361,8 +330,7 @@
 
                         <div class="form-group">
                             <label for="message">Quest Objectives (Message)</label>
-                            <textarea id="message" name="message" rows="5" required
-                                placeholder="Descrivi brevemente l'opportunità o il progetto..."></textarea>
+                            <textarea id="message" name="message" rows="5" required placeholder="Descrivi brevemente l'opportunità o il progetto..."></textarea>
                         </div>
 
                         <div class="form-actions">
@@ -377,18 +345,19 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- ==========================================
+         FOOTER LAYER
+         ========================================== -->
     <footer class="site-footer">
         <div class="footer-socials">
             <a href="https://github.com/turelion" target="_blank" class="footer-link">[GITHUB]</a>
-            <a href="https://www.linkedin.com/in/salvatore-leone-full-stack-devback/" target="_blank"
-                class="footer-link">[LINKEDIN]</a>
+            <a href="https://www.linkedin.com/in/salvatore-leone-full-stack-devback/" target="_blank" class="footer-link">[LINKEDIN]</a>
         </div>
-        <p class="footer-credits"><span class="code-keyword">while</span>(salvatore_leone.hp &gt; 0) {dev_mode = <span
-                class="code-keyword">true</span>;} &copy;2026 all rights reserved.</p>
+        <!-- Easter egg -->
+        <p class="footer-credits"><span class="code-keyword">while</span>(salvatore_leone.hp &gt; 0) {dev_mode = <span class="code-keyword">true</span>;} &copy;2026 all rights reserved.</p>
     </footer>
 
-    <!-- Collegamento al JavaScript (defer lo carica alla fine per non bloccare la pagina) -->
+    <!-- LOGIC SYSTEM -->
     <script src="script.js" defer></script>
 </body>
 

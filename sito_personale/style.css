@@ -1,29 +1,24 @@
 /* ==========================================================================
-   1. VARIABILI GLOBALI & RESET
+   1. CORE ARCHITECTURE: VARIABILI GLOBALI & RESET
    ========================================================================== */
 :root {
-    /* Palette Colori */
-    --bg-dark: #0F1115;
-    /* Antracite profondo per lo sfondo */
-    --bg-surface: #161a23;
-    /* Grigio più chiaro per i box */
-    --primary-cyan: #00E5FF;
-    /* Ciano elettrico per accenti e codice */
-    --text-main: #E2E8F0;
-    /* Bianco sporco per leggibilità */
-    --text-muted: #94A3B8;
-    /* Grigio metallico per testi secondari */
-    --border-color: #242B35;
-    /* Colore per le griglie geometriche */
+    /* Palette Colori: Contrasti netti in stile Dark/Cyberpunk per massimizzare la leggibilità */
+    --bg-dark: #0F1115;       /* Antracite profondo per lo sfondo principale */
+    --bg-surface: #161a23;    /* Grigio superficie per card, finestre e moduli isolati */
+    --primary-cyan: #00E5FF;  /* Ciano elettrico per accenti logici, focus e stringhe di codice */
+    --text-main: #E2E8F0;     /* Bianco sporco ad alto contrasto per i testi di lettura */
+    --text-muted: #94A3B8;    /* Grigio metallico per sub-header, commenti e log di sistema */
+    --border-color: #242B35;  /* Linea hi-tech per tracciare le griglie geometriche */
 
-    /* Font Families */
+    /* Typography System: Plus Jakarta per le interfacce HUD, Fira Code per la logica/mono */
     --font-sans: 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'Fira Code', monospace;
 
-    /* Transizioni */
+    /* Motion System: Transizione unica per garantire fluidità su hover ed eventi di stato */
     --transition-smooth: all 0.3s ease;
 }
 
+/* Reset Strutturale Totale per azzerare i comportamenti nativi dei browser */
 * {
     margin: 0;
     padding: 0;
@@ -39,7 +34,7 @@ html {
 
 body {
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Per sicurezza blocco preventivo di qualsiasi overflow orizzontale */
     line-height: 1.6;
 }
 
@@ -54,7 +49,7 @@ li {
 
 
 /* ==========================================================================
-   2. HEADER, HORIZONTAL HUD & GAME OVERLAY MENU
+   2. INTERFACE LAYER: HEADER, HORIZONTAL HUD & OVERLAY MENU
    ========================================================================== */
 .main-header {
     position: fixed;
@@ -66,10 +61,9 @@ li {
     justify-content: space-between;
     align-items: center;
     background-color: rgba(15, 17, 21, 0.85);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px); /* Effetto frosted-glass per mantenere visibile il background durante lo scroll */
     border-bottom: 1px solid var(--border-color);
-    z-index: 1010;
-    /* Sopra l'overlay */
+    z-index: 1010; /* Livello di priorità superiore per fluttuare sopra i contenuti, ma sotto il menu di pausa */
 }
 
 .logo {
@@ -79,7 +73,7 @@ li {
     font-family: var(--font-sans);
 }
 
-/* Animazione del cursore lampeggiante del logo */
+/* Animazione ad impulsi per il cursore del terminale nel logo */
 .terminal-cursor {
     color: var(--primary-cyan);
     font-family: var(--font-mono);
@@ -87,18 +81,11 @@ li {
 }
 
 @keyframes blink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
-/* Blocco di sinistra dell'HUD: Avatar + Badge */
+/* Layout HUD: Allineamento e spaziatura degli elementi biometrici dell'interfaccia */
 .hud-profile-block {
     display: flex;
     align-items: center;
@@ -115,8 +102,7 @@ li {
     color: var(--text-muted);
 }
 
-
-/* Badge Livello con scansione laser */
+/* Badge Livello: Struttura racchiusa in un gradiente scuro con effetto scansione continua */
 .hud-level-badge {
     font-weight: 800;
     color: var(--primary-cyan);
@@ -127,8 +113,7 @@ li {
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
-    white-space: nowrap;
-    /* FIX: Impedisce a LVL e 34 di dividersi */
+    white-space: nowrap; /* Evito tassativamente la rottura riga tra la stringa 'LVL' e il valore numerico */
     display: inline-flex;
     align-items: center;
 }
@@ -145,16 +130,11 @@ li {
 }
 
 @keyframes scanline {
-    0% {
-        transform: translateY(-100%);
-    }
-
-    100% {
-        transform: translateY(100%);
-    }
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
 }
 
-/* Centro: HUD Orizzontale Disteso */
+/* HUD Orizzontale Centralizzato: visualizzazione stile RPG */
 .rpg-hud-horizontal {
     display: flex;
     align-items: center;
@@ -173,15 +153,10 @@ li {
     font-weight: 700;
 }
 
-.red-text {
-    color: #FF5F56;
-}
+.red-text { color: #FF5F56; }
+.purple-text { color: #BD93F9; }
 
-.purple-text {
-    color: #BD93F9;
-}
-
-/* Traccia della barra visibile su sfondo scuro */
+/* Track bar per l'esperienza e i parametri vitali */
 .bar-track {
     width: 90px;
     height: 6px;
@@ -193,7 +168,7 @@ li {
 
 .bar-fill {
     height: 100%;
-    transition: width 1s ease-out;
+    transition: width 1s ease-out; /* Animazione fluida al caricamento della statistica */
 }
 
 .hp-bar {
@@ -216,7 +191,7 @@ li {
     font-size: 0.7rem;
 }
 
-/* Destra: Tasto Menu Unico */
+/* Tasto Controllo Menu Interfaccia */
 .menu-trigger {
     background: transparent;
     border: none;
@@ -228,7 +203,7 @@ li {
     align-items: center;
     gap: 0.75rem;
     cursor: pointer;
-    z-index: 1020;
+    z-index: 1020; /* Sempre sopra l'overlay quando attivato */
     transition: var(--transition-smooth);
 }
 
@@ -249,11 +224,11 @@ li {
     transition: var(--transition-smooth);
 }
 
-/* --- INTERFACCIA CON EFFETTO CONGELATO (FROST OVERLAY) --- */
+/* Frost Overlay: Menu di pausa a schermo intero */
 .game-overlay-menu {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%; /* Nascosto lateralmente per impostazione predefinita */
     width: 100%;
     height: 100vh;
     background: radial-gradient(circle, rgba(20, 30, 48, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
@@ -263,7 +238,7 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* sliding pulito */
 }
 
 .game-overlay-menu.active {
@@ -288,8 +263,7 @@ li {
 }
 
 .mobile-hud-display {
-    margin-bottom: 4rem;
-    /* Ampio spazio distanziatore dalle voci di menu */
+    margin-bottom: 4rem; /* Spazio di isolamento dalle voci di navigazione su mobile */
 }
 
 .overlay-nav {
@@ -308,8 +282,7 @@ li {
     justify-content: center;
     gap: 1rem;
     transition: var(--transition-smooth);
-    white-space: nowrap;
-    /* FIX: Impedisce a CORE_ENGINE (Terminal) di andare a capo */
+    white-space: nowrap; /* Evito ritorni a capo sui titoli lunghi */
 }
 
 .link-number {
@@ -324,16 +297,16 @@ li {
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Classe per congelare lo sfondo quando il menu è attivo */
+/* Stato di blocco per lo sfondo quando l'overlay è attivo */
 body.menu-open {
     overflow: hidden !important;
     height: 100vh !important;
 }
 
-/* --- RESPONSIVE ADJUSTMENTS --- */
+/* Ottimizzazione UI Mobile dell'Header (Sotto gli 850px) */
 @media (max-width: 850px) {
     .rpg-hud-horizontal {
-        display: none;
+        display: none; /* Nascondo l'HUD orizzontale desktop per evitare collisioni di spazio */
     }
 
     .mobile-hud-display {
@@ -348,7 +321,7 @@ body.menu-open {
 
     .mobile-hud-display .rpg-hud-horizontal {
         display: flex;
-        flex-direction: column;
+        flex-direction: column; /* Incolonnamento verticale dell'HUD dentro il menu di pausa mobile */
         align-items: flex-start;
         gap: 1rem;
     }
@@ -356,13 +329,13 @@ body.menu-open {
 
 @media (max-width: 480px) {
     .overlay-link {
-        font-size: 1.1rem;
-        /* Riduce leggermente il testo su smartphone molto piccoli per sicurezza */
+        font-size: 1.1rem; /* Scalo il font per i display mobile più compatti */
     }
 }
 
+
 /* ==========================================================================
-   3. HERO SECTION
+   3. HERO LAYER (LANDING VIEW)
    ========================================================================== */
 .section-hero {
     min-height: 100vh;
@@ -380,7 +353,6 @@ body.menu-open {
     z-index: 2;
 }
 
-/* Aggiornato: Gestisce il contenitore dei tag con Flexbox e allineamento centrale */
 .hero-tag-system {
     display: flex;
     align-items: center;
@@ -403,18 +375,16 @@ body.menu-open {
     box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
 }
 
-/* Nuovo: Stile per il testo ID accanto al badge */
 .status-glitch {
     font-family: var(--font-mono);
     color: var(--text-muted);
     font-size: 0.85rem;
     letter-spacing: 0.5px;
     margin-left: 0.2rem;
-    /* Sicurezza per evitare che si attacchi al badge */
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4rem); /* Ridimensionamento fluido in base allo schermo senza media queries */
     font-weight: 800;
     line-height: 1.1;
     margin-top: 2rem;
@@ -446,6 +416,7 @@ body.menu-open {
     flex-wrap: wrap;
 }
 
+/* Call to Action Buttons */
 .btn {
     padding: 0.8rem 2rem;
     font-size: 1rem;
@@ -464,7 +435,7 @@ body.menu-open {
 .btn-primary:hover {
     background-color: transparent;
     color: var(--primary-cyan);
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); /* Glow-effect neon controllato */
 }
 
 .btn-secondary {
@@ -478,6 +449,7 @@ body.menu-open {
     color: var(--primary-cyan);
 }
 
+/* UI Scroll Indicator Control */
 .scroll-indicator {
     position: absolute;
     bottom: 2rem;
@@ -487,7 +459,7 @@ body.menu-open {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    opacity: 0.7;;
+    opacity: 0.7;
 }
 
 .scroll-indicator .mouse {
@@ -510,37 +482,27 @@ body.menu-open {
     animation: scroll-wheel 1.6s infinite;
 }
 
-/* Stile specifico per Mobile (sotto i 768px di larghezza) */
+@keyframes scroll-wheel {
+    0% { top: 6px; opacity: 1; }
+    50% { top: 14px; opacity: 0; }
+    100% { top: 6px; opacity: 1; }
+}
+
 @media (max-width: 768px) {
+    /* Riposizionamento dell'indicatore per evitare sovrapposizioni visive su layout mobile verticali */
     .scroll-indicator {
         position: relative !important;
         bottom: auto !important;
         left: auto !important;
         transform: none !important;
-        margin: 3rem auto 1rem auto; /* Spinge il mouse 3rem sotto i bottoni e lo centra */
+        margin: 3rem auto 1rem auto;
         display: flex;
     }
 }
 
-@keyframes scroll-wheel {
-    0% {
-        top: 6px;
-        opacity: 1;
-    }
-
-    50% {
-        top: 14px;
-        opacity: 0;
-    }
-
-    100% {
-        top: 6px;
-        opacity: 1;
-    }
-}
 
 /* ==========================================================================
-   4. CHARACTER SHEET (PROFILE, HOLOGRAM SCAN & ICON INVENTORY) - STRUTTURA A COLONNE (GRID)
+   4. DATA LAYER: CHARACTER SHEET & SYSTEM INVENTORY (GRID ARCHITECTURE)
    ========================================================================== */
 .section-profile {
     padding: 6rem 2rem;
@@ -564,11 +526,10 @@ body.menu-open {
 
 .cyan-highlight {
     color: var(--primary-cyan) !important;
-    /* Forza il colore ciano della tua palette */
     text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
 }
 
-/* Layout macro a 3 colonne generale della pagina */
+/* Layout Macro a 3 Colonne Asimmetriche: Scanner, Biografia, Inventario */
 .rpg-character-layout {
     display: grid;
     grid-template-columns: 320px 1fr 450px;
@@ -576,7 +537,6 @@ body.menu-open {
     align-items: start;
 }
 
-/* Struttura base delle colonne standard */
 .rpg-column {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
@@ -587,7 +547,7 @@ body.menu-open {
     flex-direction: column;
 }
 
-/* Colonna Scan completamente trasparente e senza bordi */
+/* Profilo Ologramma: Struttura Ghost trasparente e priva di contenitori fisici */
 .face-scan-ghost {
     background-color: transparent !important;
     border: none !important;
@@ -613,23 +573,17 @@ body.menu-open {
     color: var(--text-main);
 }
 
-/* Stile futuristico per i tag di intestazione del paragrafo */
 .card-log-tag {
     font-family: var(--font-mono);
-    /* Forza l'uso del font da codice */
     font-size: 0.75rem;
-    /* Testo molto piccolo, stile stringa di sistema */
     color: var(--primary-cyan);
-    /* Riprende il colore ciano per creare contrasto */
     letter-spacing: 1px;
-    /* Spazia le lettere in stile interfaccia militare */
     display: block;
-    /* Lo tiene sopra come prima, ma senza ingombro eccessivo */
     font-weight: bold;
     opacity: 0.9;
 }
 
-/* --- COLONNA 1: INTRO SYSTEM & OLOGRAMMA --- */
+/* --- COLONNA 1: SCANNER EFFETTI LABELS --- */
 .scan-header-system {
     display: flex;
     flex-direction: column;
@@ -676,11 +630,12 @@ body.menu-open {
     max-width: 300px;
     height: auto;
     display: block;
-    mix-blend-mode: lighten;
+    mix-blend-mode: lighten; /* Fondiamo lo sfondo nero del rendering 3D direttamente sul background */
     opacity: 0.9;
     filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.2));
 }
 
+/* Barra Laser ad oscillazione verticale per simulare lo scan attivo */
 .laser-line {
     position: absolute;
     top: 0;
@@ -692,6 +647,11 @@ body.menu-open {
     animation: laser-scan 3.5s infinite ease-in-out;
 }
 
+@keyframes laser-scan {
+    0%, 100% { top: 0%; }
+    50% { top: 100%; }
+}
+
 .scan-status-text {
     font-size: 0.75rem;
     color: var(--primary-cyan);
@@ -701,7 +661,7 @@ body.menu-open {
     margin-left: 1.4rem;
 }
 
-/* --- COLONNA 2: BIOGRAFIA E ATTRIBUTI --- */
+/* --- COLONNA 2: TRAITS & CHRONICLES --- */
 .attributes-list {
     font-family: var(--font-mono);
     margin-bottom: 1.6rem;
@@ -713,14 +673,8 @@ body.menu-open {
     line-height: 1.4;
 }
 
-.attr-name {
-    color: var(--text-muted);
-}
-
-.attr-value {
-    color: var(--primary-cyan);
-    font-weight: 500;
-}
+.attr-name { color: var(--text-muted); }
+.attr-value { color: var(--primary-cyan); font-weight: 500; }
 
 .profile-bio p {
     color: var(--text-muted);
@@ -730,11 +684,10 @@ body.menu-open {
 }
 
 .profile-bio p:last-child {
-    margin-bottom: 0;
-    /* Elimina il margine finale per non spingere il bordo della card */
+    margin-bottom: 0; /* Resetto il blocco per allinearlo simmetricamente al fondo del modulo */
 }
 
-/* --- COLONNA 3: CONFIGURAZIONE INVENTARIO (STRUTTURA GRID AGGIORNATA) --- */
+/* --- COLONNA 3: HARDWARE INVENTORY (EQUIPMENT LAYOUT) --- */
 .inventory-card {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
@@ -745,18 +698,17 @@ body.menu-open {
     flex-direction: column;
 }
 
-/* Usiamo le percentuali ma con allineamento interno per avvicinarli */
+/* Griglia sdoppiata a due macro blocchi: Griglia Slot (Destra) e Zaino (Sinistra) */
 .inventory-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Dividiamo la card esattamente in due metà pulite */
     gap: 1.5rem;
     align-items: center;
     width: 100%;
     flex-grow: 1;
 }
 
-/* LA GRIGLIA DESKTOP: La spingiamo verso destra per incollarla allo zaino */
+/* Configurazione degli slot quadrati dell'inventario desktop */
 .inventory-grid {
     display: grid;
     grid-template-columns: repeat(4, 54px);
@@ -765,7 +717,6 @@ body.menu-open {
     width: max-content;
 }
 
-/* Lo slot rimane un quadrato perfetto e non fluttua fuori */
 .inventory-item-slot {
     width: 100%;
     height: 54px;
@@ -781,7 +732,6 @@ body.menu-open {
     transition: var(--transition-smooth);
 }
 
-/* Icone Desktop dentro i 52px */
 .item-icon {
     font-size: 1.45em;
     color: var(--text-main);
@@ -797,6 +747,7 @@ body.menu-open {
     transition: var(--transition-smooth);
 }
 
+/* Hover States: illuminazione dinamica degli slot e incremento opacità delle icone dello stack */
 .inventory-item-slot:hover {
     border-color: var(--primary-cyan);
     background-color: rgba(0, 229, 255, 0.04);
@@ -815,7 +766,7 @@ body.menu-open {
     filter: drop-shadow(0 0 5px var(--primary-cyan));
 }
 
-/* Tooltip */
+/* Tooltip Custom generati dall'attributo data-item HTML */
 .inventory-item-slot::after {
     content: attr(data-item);
     position: absolute;
@@ -842,6 +793,7 @@ body.menu-open {
     transform: translateX(-50%) translateY(0);
 }
 
+/* Moduli Backend Core */
 .core-item {
     border-color: rgba(0, 229, 255, 0.35);
 }
@@ -850,7 +802,7 @@ body.menu-open {
     opacity: 0.85;
 }
 
-/* Slot Speciale AI */
+/* Moduli AI Specialization */
 .ai-item {
     border-color: rgba(189, 147, 249, 0.5);
 }
@@ -874,6 +826,7 @@ body.menu-open {
     border-color: #bd93f9;
 }
 
+/* Slot Futuri ad Espansione (Locked Status) */
 .locked-slot {
     border-style: dashed;
     opacity: 0.25;
@@ -885,7 +838,7 @@ body.menu-open {
     color: var(--text-muted);
 }
 
-/* CONTENITORE ZAINO DESKTOP (Ancorato nella sua colonna) */
+/* Modulo Zaino Grafico */
 .backpack-custom-container {
     display: flex;
     flex-direction: column;
@@ -920,35 +873,19 @@ body.menu-open {
     letter-spacing: 0.5px;
 }
 
-.text-cyan {
-    color: #00E5FF
-}
-
-
-/* --- ANIMAZIONI GENERALI --- */
-@keyframes laser-scan {
-
-    0%,
-    100% {
-        top: 0%;
-    }
-
-    50% {
-        top: 100%;
-    }
-}
+.text-cyan { color: #00E5FF; }
 
 
 /* ==========================================================================
-   DINAMISMO TABLET (Fluido con le Frazioni di Grid - No Blocchi Fissi)
+   FLUID TABLET RESPONSIVE (Da 481px a 1320px) - Gestione Frazioni
    ========================================================================== */
 @media (min-width: 481px) and (max-width: 1320px) {
     .rpg-character-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Collasso le macro colonne in un'unica traccia verticale */
         gap: 2rem;
     }
 
-    /* Usiamo le frazioni (fr): la griglia occupa il 60% dello spazio disponibile, lo zaino il 40% */
+    /* Gestione flessibile in frazioni: 60% dello spazio utile alla griglia, 40% allo zaino */
     .inventory-wrapper {
         display: grid;
         grid-template-columns: 1.5fr 1fr;
@@ -957,41 +894,28 @@ body.menu-open {
         width: 100%;
     }
 
-    /* La griglia si adatta fluidamente alla colonna senza forzature */
     .inventory-grid {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(5, 1fr); /* Espando a 5 slot per riga sfruttando la larghezza tablet */
         width: 100%;
         max-width: 100%;
         justify-self: auto;
         gap: 0.5rem;
     }
 
-    /* FORZIAMO lo slot a resettare l'altezza fissa desktop e a tornare fluido */
+    /* Reset totale dei blocchi fissi desktop per calcolare l'altezza in modo proporzionale */
     .inventory-item-slot {
         width: 100%;
-        height: auto;
-        /* Annulla i 54px del desktop */
-        aspect-ratio: 1 / 1;
-        /* Il quadrato si calcola da solo in base alla larghezza della colonna */
+        height: auto; 
+        aspect-ratio: 1 / 1; /* Il quadrato si auto-regola perfettamente in base alla larghezza della colonna */
     }
 
-    /* Le icone si ridimensionano proporzionalmente */
-    .item-icon {
-        font-size: 2rem;
-    }
+    .item-icon { font-size: 2rem; }
+    .item-icon-svg { width: 2rem; height: 2rem; }
 
-    .item-icon-svg {
-        width: 2rem;
-        height: 2rem;
-    }
-
-    /* Lo zaino occupa il 100% della sua colonna (che è il 40% del totale), centrandosi da solo */
     .backpack-custom-container {
         width: 100%;
-        max-width: 220px;
-        /* Unico limite per non farlo diventare gigante su tablet grandi */
+        max-width: 220px; /* Limite massimo protettivo per preservare la resa dell'immagine */
         margin: 0 auto;
-        /* Centratura automatica pulita */
         text-align: center;
     }
 
@@ -1007,19 +931,16 @@ body.menu-open {
 
 
 /* ==========================================================================
-   DINAMISMO MOBILE (Incolonnamento Perfetto Sotto i 480px)
+   FLUID MOBILE RESPONSIVE (Sotto i 480px) - Incolonnamento di Sicurezza
    ========================================================================== */
 @media (max-width: 480px) {
-    /* Impediamo a monte che la sezione possa generare overflow orizzontale */
     .section-profile {
-        padding: 4rem 1rem !important; /* Riduciamo leggermente il padding laterale a 1rem per dare più spazio alle card */
+        padding: 4rem 1rem !important; /* Riduco l'ingombro laterale lasciando massima ampiezza d'azione alle card */
         overflow: hidden;
         width: 100%;
     }
 
-    .profile-container {
-        width: 100%;
-    }
+    .profile-container { width: 100%; }
 
     .rpg-character-layout {
         grid-template-columns: 1fr;
@@ -1027,57 +948,46 @@ body.menu-open {
         width: 100%;
     }
 
-    /* Forza tutte le colonne a non superare mai la larghezza dello schermo */
     .rpg-column {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        min-height: auto !important; /* Evita altezze vuote eccessive su mobile */
+        min-height: auto !important; /* Azzeramento altezze minime ereditate dal desktop per evitare vuoti */
     }
 
-    /* FIX OLOGRAMMA: Resettiamo il margine ereditato dal desktop */
     .scan-status-text {
-        margin-left: 0 !important; /* Elimina la spinta a destra */
+        margin-left: 0 !important; /* Allineamento dritto al centro senza dipendenze asimmetriche */
         text-align: center;
         width: 100%;
     }
 
-    /* Forza l'incolonnamento verticale: prima la griglia, sotto lo zaino */
+    /* Collasso totale: prima la griglia competenze, sotto lo zaino */
     .inventory-wrapper {
-        display: grid;
         grid-template-columns: 1fr;
         gap: 2rem;
         justify-items: center;
         width: 100%;
     }
 
-    /* Ottimizzazione Griglia: passiamo a 4 colonne per non rompere il layout sui 412px del Pixel */
+    /* Calibrazione griglia su smartphone: 4 colonne stabili per prevenire l'overflow sui display stretti */
     .inventory-grid {
-        grid-template-columns: repeat(4, 1fr) !important; 
+        grid-template-columns: repeat(4, 1fr) !important;
         width: 100%;
-        max-width: 280px; /* Contiene la griglia per non farla spandere sui bordi */
+        max-width: 280px; 
         gap: 0.5rem;
         justify-self: center !important;
         margin: 0 auto !important;
     }
 
-    /* FORZIAMO lo slot a calcolarsi in modo fluido e a rimanere un quadrato perfetto */
     .inventory-item-slot {
         width: 100% !important;
         height: auto !important;
         aspect-ratio: 1 / 1 !important;
     }
 
-    .item-icon {
-        font-size: 1.50rem; /* Leggermente ridimensionata per stare comoda nei quadratini su schermi stretti */
-    }
+    .item-icon { font-size: 1.50rem; }
+    .item-icon-svg { width: 1.5rem; height: 1.5rem; }
 
-    .item-icon-svg {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-    /* Lo zaino su mobile si rimpicciolisce e sta al centro sotto le icone */
     .backpack-custom-container {
         width: 100%;
         max-width: 120px;
@@ -1095,8 +1005,9 @@ body.menu-open {
     }
 }
 
+
 /* ==========================================================================
-   5. LIVE TERMINAL
+   5. LOGIC SYSTEM: LIVE TERMINAL INTERFACE
    ========================================================================== */
 .section-terminal {
     padding: 6rem 2rem;
@@ -1111,7 +1022,7 @@ body.menu-open {
 }
 
 .terminal-window {
-    background-color: #090B0E;
+    background-color: #090B0E; /* Nero assoluto per simulare lo sfondo nativo della shell bash */
     border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
@@ -1128,16 +1039,14 @@ body.menu-open {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* I PALLINI MAC IN ALTO */
+/* Pulsanti stile OS Unix allineati orizzontalmente in posizione fissa */
 .terminal-buttons {
     display: flex !important;
     flex-direction: row !important;
-    /* Forza i pallini in linea orizzontale */
     gap: 0.5rem;
     position: absolute;
     left: 1rem;
     width: auto !important;
-    /* Impedisce che si allarghino su mobile */
 }
 
 .btn-dot {
@@ -1146,20 +1055,11 @@ body.menu-open {
     border-radius: 50%;
     display: inline-block;
     flex-shrink: 0;
-    /* Impedisce ai pallini di schiacciarsi */
 }
 
-.btn-dot.red {
-    background-color: #FF5F56;
-}
-
-.btn-dot.yellow {
-    background-color: #FFBD2E;
-}
-
-.btn-dot.green {
-    background-color: #27C93F;
-}
+.btn-dot.red { background-color: #FF5F56; }
+.btn-dot.yellow { background-color: #FFBD2E; }
+.btn-dot.green { background-color: #27C93F; }
 
 .terminal-title {
     width: 100%;
@@ -1169,19 +1069,18 @@ body.menu-open {
     color: var(--text-muted);
 }
 
-/* IL CORPO DEL TERMINALE */
+/* Shell Terminal Body */
 .terminal-body {
     padding: 1.5rem;
     font-family: var(--font-mono);
     font-size: 0.9rem;
-    text-align: left !important;
-    /* CORREZIONE: Allinea tutto a sinistra nativo */
+    text-align: left !important; /* Allineamento forzato a sinistra per rispettare il rendering di una console reale */
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 }
 
-/* Forziamo il reset totale dell'allineamento per qualsiasi tag interno al terminale */
+/* Controllo assoluto dell'allineamento dei log interni */
 .terminal-body * {
     text-align: left !important;
 }
@@ -1189,37 +1088,19 @@ body.menu-open {
 .terminal-output {
     flex-grow: 1;
     text-align: left !important;
-    /* CORREZIONE: Forza l'output a sinistra */
 }
 
 .output-line {
     margin-bottom: 0.5rem;
-    white-space: pre-wrap;
+    white-space: pre-wrap; /* Mantiene la formattazione a blocchi spezzando la riga in sicurezza */
     text-align: left !important;
-    /* CORREZIONE: Impedisce i ritorni a capo strani a destra */
 }
 
-.system-msg {
-    color: var(--text-muted);
-    font-style: italic;
-}
-
-.cyan-text {
-    color: var(--primary-cyan);
-}
-
-.prompt-text {
-    color: #5AF78E;
-    margin-right: 0.5rem;
-}
-
-.muted-text {
-    color: #A4B9D6;
-}
-
-.success-text {
-    color: #F3F99D;
-}
+.system-msg { color: var(--text-muted); font-style: italic; }
+.cyan-text { color: var(--primary-cyan); }
+.prompt-text { color: #5AF78E; margin-right: 0.5rem; }
+.muted-text { color: #A4B9D6; }
+.success-text { color: #F3F99D; }
 
 .terminal-input-line {
     display: flex;
@@ -1235,10 +1116,10 @@ body.menu-open {
     font-family: var(--font-mono);
     font-size: 0.9rem;
     flex-grow: 1;
-    caret-color: var(--primary-cyan);
+    caret-color: var(--primary-cyan); /* Colore del cursore di digitazione sincronizzato */
 }
 
-/* I PULSANTI CLICCABILI SOTTO */
+/* Pulsanti Macro/Scorciatoie sottostanti */
 .terminal-shortcuts {
     display: flex;
     gap: 1rem;
@@ -1264,49 +1145,33 @@ body.menu-open {
     background-color: rgba(0, 229, 255, 0.05);
 }
 
-
-/* ==========================================================================
-   RESPONSIVE & MEDIA QUERIES DETTAGLIATE
-   ========================================================================== */
-
-/* --- DESKTOP & TABLET (Ingrandiamo l'altezza per invitare all'input) --- */
+/* --- TERMINAL RESPONSIVE CONFIGURATIONS --- */
 @media (min-width: 577px) {
     .terminal-body {
-        height: 480px;
-        /* CORREZIONE: Alza il terminale a 480px per far vedere l'input */
+        height: 480px; /* Estensione verticale ideale su desktop per rendere leggibili i blocchi di log script */
     }
 }
 
-/* --- MOBILE (Risolviamo i problemi di spazio e incolonnamento) --- */
 @media (max-width: 576px) {
     .section-terminal {
         padding: 3rem 1rem;
-        /* Riduce i margini esterni della sezione */
     }
 
-
     .terminal-body {
-        height: 320px;
-        /* CORREZIONE: Su mobile lo teniamo più basso per non farlo strabordare */
+        height: 320px; /* Spazio ridotto per evitare ingombri massicci su smartphone */
         padding: 1rem;
     }
 
-    /* Testo rimpicciolito per non andare a capo male */
-    .terminal-body,
-    .output-line,
-    #terminal-input {
+    .terminal-body, .output-line, #terminal-input {
         font-size: 0.75rem !important;
         line-height: 1.4 !important;
     }
 
-    /* Forza l'allineamento a sinistra assoluto di ogni riga su mobile */
-    .output-line,
-    .system-msg,
-    .terminal-output {
+    .output-line, .system-msg, .terminal-output {
         text-align: left !important;
     }
 
-    /* RISOLUZIONE PULSANTI SOTTO: Li mettiamo tutti in colonna singola, uno sotto l'altro */
+    /* Incolonnamento verticale pulito delle scorciatoie su un'unica colonna per agevolare il tap */
     .terminal-shortcuts {
         flex-direction: column !important;
         gap: 0.6rem !important;
@@ -1318,13 +1183,13 @@ body.menu-open {
         display: block !important;
         text-align: center;
         padding: 0.75rem;
-        /* Più facile da tappare */
         font-size: 0.85rem;
     }
 }
 
+
 /* ==========================================================================
-   6. QUEST LOG (CONTACT FORM)
+   6. QUEST LAYER: CONTACT CONTEXT (NETLIFY CAPTURE)
    ========================================================================== */
 .section-contact {
     padding: 6rem 2rem 4rem 2rem;
@@ -1345,20 +1210,9 @@ body.menu-open {
     padding: 2.5rem;
 }
 
-/* Briefing di missione stilizzato */
 .quest-briefing {
     text-align: center;
     margin-bottom: 2rem;
-}
-
-.card-log-tag {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--primary-cyan);
-    letter-spacing: 1px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
 }
 
 .quest-briefing p {
@@ -1387,11 +1241,10 @@ body.menu-open {
     letter-spacing: 0.5px;
 }
 
-/* Input più profondi e scuri */
+/* Stile Campi Input in coordinato scuro profondo */
 .form-group input,
 .form-group textarea {
-    background-color: #050709;
-    /* Profondità visiva */
+    background-color: #050709; /* Sfondo scuro per generare un senso di profondità visiva */
     border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 0.75rem 1rem;
@@ -1413,7 +1266,6 @@ body.menu-open {
     font-size: 0.9rem;
 }
 
-/* Contenitore pulsanti centrato */
 .form-actions {
     display: flex;
     gap: 1.5rem;
@@ -1421,7 +1273,7 @@ body.menu-open {
     margin-top: 1rem;
 }
 
-/* Nuovo stile dei pulsanti "Quest" */
+/* Bottoni in stile Quest (Neon Outline) */
 .btn-quest {
     padding: 0.8rem 1.8rem;
     font-family: var(--font-mono);
@@ -1437,7 +1289,6 @@ body.menu-open {
     transition: all 0.3s ease;
 }
 
-/* Bottone Principale (Neon Outline Ciano) */
 .btn-quest.primary {
     background: transparent;
     border: 1px solid var(--primary-cyan);
@@ -1453,7 +1304,6 @@ body.menu-open {
     text-shadow: none;
 }
 
-/* Bottone CV Secondario (Muted/Tecnico) */
 .btn-quest.secondary {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-color);
@@ -1466,42 +1316,30 @@ body.menu-open {
     background: rgba(255, 255, 255, 0.06);
 }
 
-/* --- RESPONSIVE MOBILE --- */
 @media (max-width: 576px) {
-    .contact-box {
-        padding: 1.5rem;
-    }
-
-    .form-actions {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .btn-quest {
-        width: 100%;
-    }
+    .contact-box { padding: 1.5rem; }
+    .form-actions { flex-direction: column; gap: 1rem; }
+    .btn-quest { width: 100%; }
 }
 
+
 /* ==========================================================================
-   7. FOOTER
+   7. FOOTER LAYER (SYSTEM STATUS BAR)
    ========================================================================== */
-/* --- SYSTEM FOOTER (TRASFORMATO IN STATUS BAR) --- */
 .site-footer {
     padding: 2.5rem 2rem;
     text-align: center;
     background-color: var(--bg-dark);
-    /* Stesso sfondo della sezione per non creare blocchi netti */
     position: relative;
 }
 
-/* Creiamo una linea di divisione hi-tech con un micro-effetto glow */
+/* Linea di giunzione superiore ad effetto sfumato hi-tech */
 .site-footer::before {
     content: '';
     position: absolute;
     top: 0;
     left: 10%;
-    width: 80%;
-    /* La linea non prende tutto lo schermo, fa molto più "interfaccia modulare" */
+    width: 80%; /* La linea copre solo la porzione centrale */
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-color), transparent);
 }
@@ -1513,13 +1351,11 @@ body.menu-open {
     margin-bottom: 1.2rem;
 }
 
-/* Trasformiamo i link in piccoli nodi di sistema */
+/* Link Social configurati come nodi attivi del sistema */
 .footer-link {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    /* Più piccolo e discreto */
     color: var(--text-muted);
-    text-decoration: none;
     letter-spacing: 1.5px;
     padding: 0.3rem 0.8rem;
     border: 1px solid transparent;
@@ -1527,7 +1363,6 @@ body.menu-open {
     transition: var(--transition-smooth);
 }
 
-/* Effetto al passaggio del mouse: si illumina delicatamente */
 .footer-link:hover {
     color: var(--primary-cyan);
     border-color: rgba(0, 229, 255, 0.2);
@@ -1545,6 +1380,5 @@ body.menu-open {
 
 .code-keyword {
     color: var(--primary-cyan);
-    /* O il colore che usi per le funzioni/keyword */
     font-weight: bold;
 }
