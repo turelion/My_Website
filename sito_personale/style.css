@@ -3,12 +3,18 @@
    ========================================================================== */
 :root {
     /* Palette Colori: Contrasti netti in stile Dark/Cyberpunk per massimizzare la leggibilità */
-    --bg-dark: #0F1115;       /* Antracite profondo per lo sfondo principale */
-    --bg-surface: #161a23;    /* Grigio superficie per card, finestre e moduli isolati */
-    --primary-cyan: #00E5FF;  /* Ciano elettrico per accenti logici, focus e stringhe di codice */
-    --text-main: #E2E8F0;     /* Bianco sporco ad alto contrasto per i testi di lettura */
-    --text-muted: #94A3B8;    /* Grigio metallico per sub-header, commenti e log di sistema */
-    --border-color: #242B35;  /* Linea hi-tech per tracciare le griglie geometriche */
+    --bg-dark: #0F1115;
+    /* Antracite profondo per lo sfondo principale */
+    --bg-surface: #161a23;
+    /* Grigio superficie per card, finestre e moduli isolati */
+    --primary-cyan: #00E5FF;
+    /* Ciano elettrico per accenti logici, focus e stringhe di codice */
+    --text-main: #E2E8F0;
+    /* Bianco sporco ad alto contrasto per i testi di lettura */
+    --text-muted: #94A3B8;
+    /* Grigio metallico per sub-header, commenti e log di sistema */
+    --border-color: #242B35;
+    /* Linea hi-tech per tracciare le griglie geometriche */
 
     /* Typography System: Plus Jakarta per le interfacce HUD, Fira Code per la logica/mono */
     --font-sans: 'Plus Jakarta Sans', sans-serif;
@@ -34,7 +40,8 @@ html {
 
 body {
     min-height: 100vh;
-    overflow-x: hidden; /* Per sicurezza blocco preventivo di qualsiasi overflow orizzontale */
+    overflow-x: hidden;
+    /* Per sicurezza blocco preventivo di qualsiasi overflow orizzontale */
     line-height: 1.6;
 }
 
@@ -61,9 +68,11 @@ li {
     justify-content: space-between;
     align-items: center;
     background-color: rgba(15, 17, 21, 0.85);
-    backdrop-filter: blur(12px); /* Effetto frosted-glass per mantenere visibile il background durante lo scroll */
+    backdrop-filter: blur(12px);
+    /* Effetto frosted-glass per mantenere visibile il background durante lo scroll */
     border-bottom: 1px solid var(--border-color);
-    z-index: 1010; /* Livello di priorità superiore per fluttuare sopra i contenuti, ma sotto il menu di pausa */
+    z-index: 1010;
+    /* Livello di priorità superiore per fluttuare sopra i contenuti, ma sotto il menu di pausa */
 }
 
 .logo {
@@ -81,8 +90,15 @@ li {
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 /* Layout HUD: Allineamento e spaziatura degli elementi biometrici dell'interfaccia */
@@ -113,7 +129,8 @@ li {
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
-    white-space: nowrap; /* Evito tassativamente la rottura riga tra la stringa 'LVL' e il valore numerico */
+    white-space: nowrap;
+    /* Evito tassativamente la rottura riga tra la stringa 'LVL' e il valore numerico */
     display: inline-flex;
     align-items: center;
 }
@@ -130,8 +147,13 @@ li {
 }
 
 @keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
 }
 
 /* HUD Orizzontale Centralizzato: visualizzazione stile RPG */
@@ -153,8 +175,13 @@ li {
     font-weight: 700;
 }
 
-.red-text { color: #FF5F56; }
-.purple-text { color: #BD93F9; }
+.red-text {
+    color: #FF5F56;
+}
+
+.purple-text {
+    color: #BD93F9;
+}
 
 /* Track bar per l'esperienza e i parametri vitali */
 .bar-track {
@@ -168,7 +195,8 @@ li {
 
 .bar-fill {
     height: 100%;
-    transition: width 1s ease-out; /* Animazione fluida al caricamento della statistica */
+    transition: width 1s ease-out;
+    /* Animazione fluida al caricamento della statistica */
 }
 
 .hp-bar {
@@ -203,7 +231,8 @@ li {
     align-items: center;
     gap: 0.75rem;
     cursor: pointer;
-    z-index: 1020; /* Sempre sopra l'overlay quando attivato */
+    z-index: 1020;
+    /* Sempre sopra l'overlay quando attivato */
     transition: var(--transition-smooth);
 }
 
@@ -228,7 +257,8 @@ li {
 .game-overlay-menu {
     position: fixed;
     top: 0;
-    right: -100%; /* Nascosto lateralmente per impostazione predefinita */
+    right: -100%;
+    /* Nascosto lateralmente per impostazione predefinita */
     width: 100%;
     height: 100vh;
     background: radial-gradient(circle, rgba(20, 30, 48, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
@@ -238,7 +268,8 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* sliding pulito */
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    /* sliding pulito */
 }
 
 .game-overlay-menu.active {
@@ -263,7 +294,8 @@ li {
 }
 
 .mobile-hud-display {
-    margin-bottom: 4rem; /* Spazio di isolamento dalle voci di navigazione su mobile */
+    margin-bottom: 4rem;
+    /* Spazio di isolamento dalle voci di navigazione su mobile */
 }
 
 .overlay-nav {
@@ -282,7 +314,8 @@ li {
     justify-content: center;
     gap: 1rem;
     transition: var(--transition-smooth);
-    white-space: nowrap; /* Evito ritorni a capo sui titoli lunghi */
+    white-space: nowrap;
+    /* Evito ritorni a capo sui titoli lunghi */
 }
 
 .link-number {
@@ -303,14 +336,20 @@ body.menu-open {
     height: 100vh !important;
 }
 
-/* Ottimizzazione UI Mobile dell'Header (Sotto gli 850px) */
+/* Impedisce al clone di vedersi dentro il menu di pausa quando siamo su schermi grandi */
+.mobile-hud-display {
+    display: none;
+}
+
 @media (max-width: 850px) {
-    .rpg-hud-horizontal {
-        display: none; /* Nascondo l'HUD orizzontale desktop per evitare collisioni di spazio */
+    .main-header .rpg-hud-horizontal {
+        display: none;
+        /* Nascondo l'HUD orizzontale desktop originale nella navbar */
     }
 
     .mobile-hud-display {
         display: flex;
+        /* Mostro il contenitore del clone solo su mobile */
         justify-content: center;
         background: rgba(22, 26, 35, 0.5);
         padding: 1.5rem;
@@ -321,7 +360,9 @@ body.menu-open {
 
     .mobile-hud-display .rpg-hud-horizontal {
         display: flex;
-        flex-direction: column; /* Incolonnamento verticale dell'HUD dentro il menu di pausa mobile */
+        /* Forza la visibilità del solo HUD clonato dentro il menu di pausa */
+        flex-direction: column;
+        /* Incolonnamento verticale dell'HUD dentro il menu mobile */
         align-items: flex-start;
         gap: 1rem;
     }
@@ -329,7 +370,8 @@ body.menu-open {
 
 @media (max-width: 480px) {
     .overlay-link {
-        font-size: 1.1rem; /* Scalo il font per i display mobile più compatti */
+        font-size: 1.1rem;
+        /* Scalo il font per i display mobile più compatti */
     }
 }
 
@@ -384,7 +426,8 @@ body.menu-open {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem); /* Ridimensionamento fluido in base allo schermo senza media queries */
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    /* Ridimensionamento fluido in base allo schermo senza media queries */
     font-weight: 800;
     line-height: 1.1;
     margin-top: 2rem;
@@ -435,7 +478,8 @@ body.menu-open {
 .btn-primary:hover {
     background-color: transparent;
     color: var(--primary-cyan);
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); /* Glow-effect neon controllato */
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    /* Glow-effect neon controllato */
 }
 
 .btn-secondary {
@@ -483,12 +527,24 @@ body.menu-open {
 }
 
 @keyframes scroll-wheel {
-    0% { top: 6px; opacity: 1; }
-    50% { top: 14px; opacity: 0; }
-    100% { top: 6px; opacity: 1; }
+    0% {
+        top: 6px;
+        opacity: 1;
+    }
+
+    50% {
+        top: 14px;
+        opacity: 0;
+    }
+
+    100% {
+        top: 6px;
+        opacity: 1;
+    }
 }
 
 @media (max-width: 768px) {
+
     /* Riposizionamento dell'indicatore per evitare sovrapposizioni visive su layout mobile verticali */
     .scroll-indicator {
         position: relative !important;
@@ -630,7 +686,8 @@ body.menu-open {
     max-width: 300px;
     height: auto;
     display: block;
-    mix-blend-mode: lighten; /* Fondiamo lo sfondo nero del rendering 3D direttamente sul background */
+    mix-blend-mode: lighten;
+    /* Fondiamo lo sfondo nero del rendering 3D direttamente sul background */
     opacity: 0.9;
     filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.2));
 }
@@ -648,8 +705,15 @@ body.menu-open {
 }
 
 @keyframes laser-scan {
-    0%, 100% { top: 0%; }
-    50% { top: 100%; }
+
+    0%,
+    100% {
+        top: 0%;
+    }
+
+    50% {
+        top: 100%;
+    }
 }
 
 .scan-status-text {
@@ -673,8 +737,14 @@ body.menu-open {
     line-height: 1.4;
 }
 
-.attr-name { color: var(--text-muted); }
-.attr-value { color: var(--primary-cyan); font-weight: 500; }
+.attr-name {
+    color: var(--text-muted);
+}
+
+.attr-value {
+    color: var(--primary-cyan);
+    font-weight: 500;
+}
 
 .profile-bio p {
     color: var(--text-muted);
@@ -684,7 +754,8 @@ body.menu-open {
 }
 
 .profile-bio p:last-child {
-    margin-bottom: 0; /* Resetto il blocco per allinearlo simmetricamente al fondo del modulo */
+    margin-bottom: 0;
+    /* Resetto il blocco per allinearlo simmetricamente al fondo del modulo */
 }
 
 /* --- COLONNA 3: HARDWARE INVENTORY (EQUIPMENT LAYOUT) --- */
@@ -873,7 +944,9 @@ body.menu-open {
     letter-spacing: 0.5px;
 }
 
-.text-cyan { color: #00E5FF; }
+.text-cyan {
+    color: #00E5FF;
+}
 
 
 /* ==========================================================================
@@ -881,7 +954,8 @@ body.menu-open {
    ========================================================================== */
 @media (min-width: 481px) and (max-width: 1320px) {
     .rpg-character-layout {
-        grid-template-columns: 1fr; /* Collasso le macro colonne in un'unica traccia verticale */
+        grid-template-columns: 1fr;
+        /* Collasso le macro colonne in un'unica traccia verticale */
         gap: 2rem;
     }
 
@@ -895,7 +969,8 @@ body.menu-open {
     }
 
     .inventory-grid {
-        grid-template-columns: repeat(5, 1fr); /* Espando a 5 slot per riga sfruttando la larghezza tablet */
+        grid-template-columns: repeat(5, 1fr);
+        /* Espando a 5 slot per riga sfruttando la larghezza tablet */
         width: 100%;
         max-width: 100%;
         justify-self: auto;
@@ -905,16 +980,24 @@ body.menu-open {
     /* Reset totale dei blocchi fissi desktop per calcolare l'altezza in modo proporzionale */
     .inventory-item-slot {
         width: 100%;
-        height: auto; 
-        aspect-ratio: 1 / 1; /* Il quadrato si auto-regola perfettamente in base alla larghezza della colonna */
+        height: auto;
+        aspect-ratio: 1 / 1;
+        /* Il quadrato si auto-regola perfettamente in base alla larghezza della colonna */
     }
 
-    .item-icon { font-size: 2rem; }
-    .item-icon-svg { width: 2rem; height: 2rem; }
+    .item-icon {
+        font-size: 2rem;
+    }
+
+    .item-icon-svg {
+        width: 2rem;
+        height: 2rem;
+    }
 
     .backpack-custom-container {
         width: 100%;
-        max-width: 220px; /* Limite massimo protettivo per preservare la resa dell'immagine */
+        max-width: 220px;
+        /* Limite massimo protettivo per preservare la resa dell'immagine */
         margin: 0 auto;
         text-align: center;
     }
@@ -935,12 +1018,15 @@ body.menu-open {
    ========================================================================== */
 @media (max-width: 480px) {
     .section-profile {
-        padding: 4rem 1rem !important; /* Riduco l'ingombro laterale lasciando massima ampiezza d'azione alle card */
+        padding: 4rem 1rem !important;
+        /* Riduco l'ingombro laterale lasciando massima ampiezza d'azione alle card */
         overflow: hidden;
         width: 100%;
     }
 
-    .profile-container { width: 100%; }
+    .profile-container {
+        width: 100%;
+    }
 
     .rpg-character-layout {
         grid-template-columns: 1fr;
@@ -952,11 +1038,13 @@ body.menu-open {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        min-height: auto !important; /* Azzeramento altezze minime ereditate dal desktop per evitare vuoti */
+        min-height: auto !important;
+        /* Azzeramento altezze minime ereditate dal desktop per evitare vuoti */
     }
 
     .scan-status-text {
-        margin-left: 0 !important; /* Allineamento dritto al centro senza dipendenze asimmetriche */
+        margin-left: 0 !important;
+        /* Allineamento dritto al centro senza dipendenze asimmetriche */
         text-align: center;
         width: 100%;
     }
@@ -973,7 +1061,7 @@ body.menu-open {
     .inventory-grid {
         grid-template-columns: repeat(4, 1fr) !important;
         width: 100%;
-        max-width: 280px; 
+        max-width: 280px;
         gap: 0.5rem;
         justify-self: center !important;
         margin: 0 auto !important;
@@ -985,8 +1073,14 @@ body.menu-open {
         aspect-ratio: 1 / 1 !important;
     }
 
-    .item-icon { font-size: 1.50rem; }
-    .item-icon-svg { width: 1.5rem; height: 1.5rem; }
+    .item-icon {
+        font-size: 1.50rem;
+    }
+
+    .item-icon-svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 
     .backpack-custom-container {
         width: 100%;
@@ -1022,7 +1116,8 @@ body.menu-open {
 }
 
 .terminal-window {
-    background-color: #090B0E; /* Nero assoluto per simulare lo sfondo nativo della shell bash */
+    background-color: #090B0E;
+    /* Nero assoluto per simulare lo sfondo nativo della shell bash */
     border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
@@ -1057,9 +1152,17 @@ body.menu-open {
     flex-shrink: 0;
 }
 
-.btn-dot.red { background-color: #FF5F56; }
-.btn-dot.yellow { background-color: #FFBD2E; }
-.btn-dot.green { background-color: #27C93F; }
+.btn-dot.red {
+    background-color: #FF5F56;
+}
+
+.btn-dot.yellow {
+    background-color: #FFBD2E;
+}
+
+.btn-dot.green {
+    background-color: #27C93F;
+}
 
 .terminal-title {
     width: 100%;
@@ -1074,7 +1177,8 @@ body.menu-open {
     padding: 1.5rem;
     font-family: var(--font-mono);
     font-size: 0.9rem;
-    text-align: left !important; /* Allineamento forzato a sinistra per rispettare il rendering di una console reale */
+    text-align: left !important;
+    /* Allineamento forzato a sinistra per rispettare il rendering di una console reale */
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -1092,15 +1196,32 @@ body.menu-open {
 
 .output-line {
     margin-bottom: 0.5rem;
-    white-space: pre-wrap; /* Mantiene la formattazione a blocchi spezzando la riga in sicurezza */
+    white-space: pre-wrap;
+    /* Mantiene la formattazione a blocchi spezzando la riga in sicurezza */
     text-align: left !important;
 }
 
-.system-msg { color: var(--text-muted); font-style: italic; }
-.cyan-text { color: var(--primary-cyan); }
-.prompt-text { color: #5AF78E; margin-right: 0.5rem; }
-.muted-text { color: #A4B9D6; }
-.success-text { color: #F3F99D; }
+.system-msg {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.cyan-text {
+    color: var(--primary-cyan);
+}
+
+.prompt-text {
+    color: #5AF78E;
+    margin-right: 0.5rem;
+}
+
+.muted-text {
+    color: #A4B9D6;
+}
+
+.success-text {
+    color: #F3F99D;
+}
 
 .terminal-input-line {
     display: flex;
@@ -1116,7 +1237,8 @@ body.menu-open {
     font-family: var(--font-mono);
     font-size: 0.9rem;
     flex-grow: 1;
-    caret-color: var(--primary-cyan); /* Colore del cursore di digitazione sincronizzato */
+    caret-color: var(--primary-cyan);
+    /* Colore del cursore di digitazione sincronizzato */
 }
 
 /* Pulsanti Macro/Scorciatoie sottostanti */
@@ -1148,7 +1270,8 @@ body.menu-open {
 /* --- TERMINAL RESPONSIVE CONFIGURATIONS --- */
 @media (min-width: 577px) {
     .terminal-body {
-        height: 480px; /* Estensione verticale ideale su desktop per rendere leggibili i blocchi di log script */
+        height: 480px;
+        /* Estensione verticale ideale su desktop per rendere leggibili i blocchi di log script */
     }
 }
 
@@ -1158,16 +1281,21 @@ body.menu-open {
     }
 
     .terminal-body {
-        height: 320px; /* Spazio ridotto per evitare ingombri massicci su smartphone */
+        height: 320px;
+        /* Spazio ridotto per evitare ingombri massicci su smartphone */
         padding: 1rem;
     }
 
-    .terminal-body, .output-line, #terminal-input {
+    .terminal-body,
+    .output-line,
+    #terminal-input {
         font-size: 0.75rem !important;
         line-height: 1.4 !important;
     }
 
-    .output-line, .system-msg, .terminal-output {
+    .output-line,
+    .system-msg,
+    .terminal-output {
         text-align: left !important;
     }
 
@@ -1244,7 +1372,8 @@ body.menu-open {
 /* Stile Campi Input in coordinato scuro profondo */
 .form-group input,
 .form-group textarea {
-    background-color: #050709; /* Sfondo scuro per generare un senso di profondità visiva */
+    background-color: #050709;
+    /* Sfondo scuro per generare un senso di profondità visiva */
     border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 0.75rem 1rem;
@@ -1317,9 +1446,18 @@ body.menu-open {
 }
 
 @media (max-width: 576px) {
-    .contact-box { padding: 1.5rem; }
-    .form-actions { flex-direction: column; gap: 1rem; }
-    .btn-quest { width: 100%; }
+    .contact-box {
+        padding: 1.5rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-quest {
+        width: 100%;
+    }
 }
 
 
@@ -1339,7 +1477,8 @@ body.menu-open {
     position: absolute;
     top: 0;
     left: 10%;
-    width: 80%; /* La linea copre solo la porzione centrale */
+    width: 80%;
+    /* La linea copre solo la porzione centrale */
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-color), transparent);
 }
